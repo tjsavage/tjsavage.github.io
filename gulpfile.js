@@ -52,7 +52,7 @@ gulp.task('production', function () {
 gulp.task('build', function () {
   return gulp.src('')
     .pipe(shell([
-      'harp compile _harp ./'
+      'harp compile _harp ./www'
     ]))
 });
 
@@ -60,7 +60,7 @@ gulp.task('build', function () {
  * Push build to gh-pages
  */
 gulp.task('deploy', ['build'], function () {
-  return gulp.src("./dist/**/*")
+  return gulp.src("./www/**/*")
     .pipe(deploy({
         branch: 'master'
     }));
