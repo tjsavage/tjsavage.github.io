@@ -1,0 +1,27 @@
+{
+  "name": "tjsavage.github.io",
+  "version": "1.0.0",
+  "description": "Personal site.",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "browser-sync": "^2.18.5",
+    "gulp": "^3.9.1",
+    "gulp-gh-pages": "^0.5.4",
+    "gulp-shell": "^0.5.2",
+    "harp": "^0.23.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tjsavage/tjsavage.github.io.git"
+  },
+  "author": "Taylor Savage",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/tjsavage/tjsavage.github.io/issues"
+  },
+  "homepage": "https://github.com/tjsavage/tjsavage.github.io#readme"
+}
