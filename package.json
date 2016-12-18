@@ -13,7 +13,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gulp --gulpfile _gulpfile.js deploy"
+    "serve": "gulp",
+    "deploy": "gulp deploy"
   },
   "repository": {
     "type": "git",

@@ -1,3 +1,7 @@
+# Specific to this project
+www
+.publish
+
 # Logs
 logs
 *.log
