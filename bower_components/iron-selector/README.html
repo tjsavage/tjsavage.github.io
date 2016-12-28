@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <!---
+
+This README is automatically generated from the comments in these files:
+iron-multi-selectable.html  iron-selectable.html  iron-selector.html
+
+Edit those files, and our readme bot will duplicate them over here!
+Edit this file, and the bot will squash your changes :)
+
+The bot does some handling of markdown. Please file a bug if it does the wrong
+thing! https://github.com/PolymerLabs/tedium/issues
+
+-->
+<p><a href="https://travis-ci.org/PolymerElements/iron-selector"><img src="https://travis-ci.org/PolymerElements/iron-selector.svg?branch=master" alt="Build status"></a></p>
+<p><em><a href="https://elements.polymer-project.org/elements/iron-selector">Demo and API docs</a></em></p>
+<p>##&lt;iron-selector&gt;</p>
+<p>  <code>iron-selector</code> is an element which can be used to manage a list of elements
+  that can be selected.  Tapping on the item will make the item selected.  The <code>selected</code> indicates
+  which item is being selected.  The default is to use the index of the item.</p>
+<p>  Example:</p>
+<pre><code class="language-html">  &lt;iron-selector selected=&quot;0&quot;&gt;
+    &lt;div&gt;Item 1&lt;/div&gt;
+    &lt;div&gt;Item 2&lt;/div&gt;
+    &lt;div&gt;Item 3&lt;/div&gt;
+  &lt;/iron-selector&gt;
+</code></pre>
+<p>  If you want to use the attribute value of an element for <code>selected</code> instead of the index,
+  set <code>attrForSelected</code> to the name of the attribute.  For example, if you want to select item by
+  <code>name</code>, set <code>attrForSelected</code> to <code>name</code>.</p>
+<p>  Example:</p>
+<pre><code class="language-html">  &lt;iron-selector attr-for-selected=&quot;name&quot; selected=&quot;foo&quot;&gt;
+    &lt;div name=&quot;foo&quot;&gt;Foo&lt;/div&gt;
+    &lt;div name=&quot;bar&quot;&gt;Bar&lt;/div&gt;
+    &lt;div name=&quot;zot&quot;&gt;Zot&lt;/div&gt;
+  &lt;/iron-selector&gt;
+</code></pre>
+<p>  You can specify a default fallback with <code>fallbackSelection</code> in case the <code>selected</code> attribute does
+  not match the <code>attrForSelected</code> attribute of any elements.</p>
+<p>  Example:</p>
+<pre><code class="language-html">    &lt;iron-selector attr-for-selected=&quot;name&quot; selected=&quot;non-existing&quot;
+                   fallback-selection=&quot;default&quot;&gt;
+      &lt;div name=&quot;foo&quot;&gt;Foo&lt;/div&gt;
+      &lt;div name=&quot;bar&quot;&gt;Bar&lt;/div&gt;
+      &lt;div name=&quot;default&quot;&gt;Default&lt;/div&gt;
+    &lt;/iron-selector&gt;
+</code></pre>
+<p>  Note: When the selector is multi, the selection will set to <code>fallbackSelection</code> iff
+  the number of matching elements is zero.</p>
+<p>  <code>iron-selector</code> is not styled. Use the <code>iron-selected</code> CSS class to style the selected element.</p>
+<p>  Example:</p>
+<pre><code class="language-html">  &lt;style&gt;
+    .iron-selected {
+      background: #eee;
+    }
+  &lt;/style&gt;
+
+  ...
+
+  &lt;iron-selector selected=&quot;0&quot;&gt;
+    &lt;div&gt;Item 1&lt;/div&gt;
+    &lt;div&gt;Item 2&lt;/div&gt;
+    &lt;div&gt;Item 3&lt;/div&gt;
+  &lt;/iron-selector&gt;
+</code></pre>
+<!-- No docs for Polymer.IronMultiSelectableBehavior found. -->
+<!-- No docs for Polymer.IronSelectableBehavior found. -->
+  </body>
+</html>

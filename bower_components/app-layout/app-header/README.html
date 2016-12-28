@@ -1,0 +1,201 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <p>##&lt;app-header&gt;</p>
+<p>![app-header]
+(<a href="http://app-layout-assets.appspot.com/assets/docs/app-header/header.gif">http://app-layout-assets.appspot.com/assets/docs/app-header/header.gif</a>)</p>
+<p>app-header is container element for app-toolbars at the top of the screen that can have scroll
+effects. By default, an app-header moves away from the viewport when scrolling down and
+if using <code>reveals</code>, the header slides back when scrolling back up. For example:</p>
+<pre><code class="language-html">&lt;app-header reveals&gt;
+  &lt;app-toolbar&gt;
+    &lt;div main-title&gt;App name&lt;/div&gt;
+  &lt;/app-toolbar&gt;
+&lt;/app-header&gt;
+</code></pre>
+<p>app-header can also condense when scrolling down. To achieve this behavior, the header
+must have a larger height than the <code>sticky</code> element in the light DOM. For example:</p>
+<pre><code class="language-html">&lt;app-header style=&quot;height: 96px;&quot; condenses fixed&gt;
+  &lt;app-toolbar style=&quot;height: 64px;&quot;&gt;
+    &lt;div main-title&gt;App name&lt;/div&gt;
+  &lt;/app-toolbar&gt;
+&lt;/app-header&gt;
+</code></pre>
+<p>In this case the header is initially <code>96px</code> tall, and it shrinks to <code>64px</code> when scrolling down.
+That is what is meant by &quot;condensing&quot;.</p>
+<h3>Sticky element</h3><p>The element that is positioned fixed to top of the header&#39;s <code>scrollTarget</code> when a threshold
+is reached, similar to <code>position: sticky</code> in CSS. This element <strong>must</strong> be an immediate
+child of app-header. By default, the <code>sticky</code> element is the first `app-toolbar that
+is an immediate child of app-header.</p>
+<pre><code class="language-html">&lt;app-header condenses&gt;
+  &lt;app-toolbar&gt; Sticky element &lt;/app-toolbar&gt;
+&lt;/app-header&gt;
+</code></pre>
+<h4>Customizing the sticky element</h4><pre><code class="language-html">&lt;app-header condenses&gt;
+  &lt;app-toolbar&gt;&lt;/app-toolbar&gt;
+  &lt;app-toolbar sticky&gt; Sticky element &lt;/app-toolbar&gt;
+&lt;/app-header&gt;
+</code></pre>
+<h3>Scroll target</h3><p>The app-header&#39;s <code>scrollTarget</code> property allows to customize the scrollable element to which
+the header responds when the user scrolls. By default, app-header uses the document as
+the scroll target, but you can customize this property by setting the id of the element, e.g.</p>
+<pre><code class="language-html">&lt;div id=&quot;scrollingRegion&quot; style=&quot;overflow-y: auto;&quot;&gt;
+  &lt;app-header scroll-target=&quot;scrollingRegion&quot;&gt;
+  &lt;/app-header&gt;
+&lt;/div&gt;
+</code></pre>
+<p>In this case, the <code>scrollTarget</code> property points to the outer div element. Alternatively,
+you can set this property programmatically:</p>
+<pre><code class="language-js">appHeader.scrollTarget = document.querySelector(&quot;#scrollingRegion&quot;);
+</code></pre>
+<h2>Backgrounds</h2><p>app-header has two background layers that can be used for styling when the header is condensed
+or when the scrollable element is scrolled to the top.</p>
+<h2>Scroll effects</h2><p>Scroll effects are <em>optional</em> visual effects applied in app-header based on scroll position. For example,
+The <a href="https://www.google.com/design/spec/patterns/scrolling-techniques.html">Material Design scrolling techniques</a>
+recommends effects that can be installed via the <code>effects</code> property. e.g.</p>
+<pre><code class="language-html">&lt;app-header effects=&quot;waterfall&quot;&gt;
+  &lt;app-toolbar&gt;App name&lt;/app-toolbar&gt;
+&lt;/app-header&gt;
+</code></pre>
+<h4>Importing the effects</h4><p>To use the scroll effects, you must explicitly import them in addition to <code>app-header</code>:</p>
+<pre><code class="language-html">&lt;link rel=&quot;import&quot; href=&quot;/bower_components/app-layout/app-scroll-effects/app-scroll-effects.html&quot;&gt;
+</code></pre>
+<h4>List of effects</h4><ul>
+<li><strong>blend-background</strong>
+Fades in/out two background elements by applying CSS opacity based on scroll position.
+You can use this effect to smoothly change the background color or image of the header.
+For example, using the mixin <code>--app-header-background-rear-layer</code> lets you assign a different
+background when the header is condensed:</li>
+</ul>
+<pre><code class="language-css">app-header {
+  background-color: red;
+  --app-header-background-rear-layer: {
+    /* The header is blue when condensed */
+    background-color: blue;
+  };
+}
+</code></pre>
+<ul>
+<li><p><strong>fade-background</strong>
+Upon scrolling past a threshold, this effect will trigger an opacity transition to
+fade in/out the backgrounds. Compared to the <code>blend-background</code> effect,
+this effect doesn&#39;t interpolate the opacity based on scroll position.</p>
+</li>
+<li><p><strong>parallax-background</strong>
+A simple parallax effect that vertically translates the backgrounds based on a fraction
+of the scroll position. For example:</p>
+</li>
+</ul>
+<pre><code class="language-css">app-header {
+  --app-header-background-front-layer: {
+    background-image: url(...);
+  };
+}
+</code></pre>
+<pre><code class="language-html">&lt;app-header style=&quot;height: 300px;&quot; effects=&quot;parallax-background&quot;&gt;
+  &lt;app-toolbar&gt;App name&lt;/app-toolbar&gt;
+&lt;/app-header&gt;
+</code></pre>
+<p>The fraction determines how far the background moves relative to the scroll position.
+This value can be assigned via the <code>scalar</code> config value and it is typically a value
+between 0 and 1 inclusive. If <code>scalar=0</code>, the background doesn&#39;t move away from the header.</p>
+<ul>
+<li><strong>resize-title</strong>
+Progressively interpolates the size of the title from the element with the <code>main-title</code> attribute
+to the element with the <code>condensed-title</code> attribute as the header condenses. For example:</li>
+</ul>
+<pre><code class="language-html">&lt;app-header condenses reveals effects=&quot;resize-title&quot;&gt;
+  &lt;app-toolbar&gt;
+      &lt;h4 condensed-title&gt;App name&lt;/h4&gt;
+  &lt;/app-toolbar&gt;
+  &lt;app-toolbar&gt;
+      &lt;h1 main-title&gt;App name&lt;/h1&gt;
+  &lt;/app-toolbar&gt;
+&lt;/app-header&gt;
+</code></pre>
+<ul>
+<li><p><strong>resize-snapped-title</strong>
+Upon scrolling past a threshold, this effect fades in/out the titles using opacity transitions.
+Similarly to <code>resize-title</code>, the <code>main-title</code> and <code>condensed-title</code> elements must be placed in the
+light DOM.</p>
+</li>
+<li><p><strong>waterfall</strong>
+Toggles the shadow property in app-header to create a sense of depth (as recommended in the
+MD spec) between the header and the underneath content. You can change the shadow by
+customizing the <code>--app-header-shadow</code> mixin. For example:</p>
+</li>
+</ul>
+<pre><code class="language-css">app-header {
+  --app-header-shadow: {
+    box-shadow: inset 0px 5px 2px -3px rgba(0, 0, 0, 0.2);
+  };
+}
+</code></pre>
+<pre><code class="language-html">&lt;app-header condenses reveals effects=&quot;waterfall&quot;&gt;
+  &lt;app-toolbar&gt;
+      &lt;h1 main-title&gt;App name&lt;/h1&gt;
+  &lt;/app-toolbar&gt;
+&lt;/app-header&gt;
+</code></pre>
+<ul>
+<li><strong>material</strong>
+Installs the waterfall, resize-title, blend-background and parallax-background effects.</li>
+</ul>
+<h3>Content attributes</h3><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sticky</code></td>
+<td>Element that remains at the top when the header condenses.</td>
+<td>The first app-toolbar in the light DOM.</td>
+</tr>
+</tbody>
+</table>
+<h2>Styling</h2><table>
+<thead>
+<tr>
+<th>Mixin</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--app-header-background-front-layer</code></td>
+<td>Applies to the front layer of the background.</td>
+<td>{}</td>
+</tr>
+<tr>
+<td><code>--app-header-background-rear-layer</code></td>
+<td>Applies to the rear layer of the background.</td>
+<td>{}</td>
+</tr>
+<tr>
+<td><code>--app-header-shadow</code></td>
+<td>Applies to the shadow.</td>
+<td>{}</td>
+</tr>
+</tbody>
+</table>
+  </body>
+</html>

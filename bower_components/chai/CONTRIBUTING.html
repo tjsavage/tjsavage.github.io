@@ -1,0 +1,203 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <h1>Chai Contribution Guidelines</h1><p>We like to encourage you to contribute to the Chai.js repository. This should be as easy as possible for you but there are a few things to consider when contributing. The following guidelines for contribution should be followed if you want to submit a pull request or open an issue.</p>
+<p>Following these guidelines helps to communicate that you respect the time of the developers managing and developing this open source project. In return, they should reciprocate that respect in addressing your issue or assessing patches and features.</p>
+<h4>Table of Contents</h4><ul>
+<li><a href="#tldr">TLDR;</a></li>
+<li><a href="#contributing">Contributing</a><ul>
+<li><a href="#bugs">Bug Reports</a></li>
+<li><a href="#features">Feature Requests</a></li>
+<li><a href="#pull-requests">Pull Requests</a></li>
+</ul>
+</li>
+<li><a href="#releasing">Releasing</a></li>
+<li><a href="#support">Support</a><ul>
+<li><a href="#resources">Resources</a></li>
+<li><a href="#contributors">Core Contributors</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="tldr"></a></p>
+<h2>TLDR;</h2><ul>
+<li>Creating an Issue or Pull Request requires a <a href="http://github.com">GitHub</a> account.</li>
+<li>Issue reports should be <strong>clear</strong>, <strong>concise</strong> and <strong>reproducible</strong>. Check to see if your issue has already been resolved in the <a href="">master</a> branch or already reported in Chai&#39;s <a href="https://github.com/chaijs/chai/issues">GitHub Issue Tracker</a>.</li>
+<li>Pull Requests must adhere to strict <a href="https://github.com/chaijs/chai/wiki/Chai-Coding-Style-Guide">coding style guidelines</a>.</li>
+<li>In general, avoid submitting PRs for new Assertions without asking core contributors first. More than likely it would be better implemented as a plugin.</li>
+<li>Additional support is available via the <a href="http://groups.google.com/group/chaijs">Google Group</a> or on irc.freenode.net#chaijs.</li>
+<li><strong>IMPORTANT</strong>: By submitting a patch, you agree to allow the project owner to license your work under the same license as that used by the project.</li>
+</ul>
+<p><a name="contributing"></a></p>
+<h2>Contributing</h2><p>The issue tracker is the preferred channel for <a href="#bugs">bug reports</a>,
+<a href="#features">feature requests</a> and <a href="#pull-requests">submitting pull
+requests</a>, but please respect the following restrictions:</p>
+<ul>
+<li>Please <strong>do not</strong> use the issue tracker for personal support requests (use
+<a href="https://groups.google.com/forum/#!forum/chaijs">Google Group</a> or IRC).</li>
+<li>Please <strong>do not</strong> derail or troll issues. Keep the discussion on topic and
+respect the opinions of others</li>
+</ul>
+<p><a name="bugs"></a></p>
+<h3>Bug Reports</h3><p>A bug is a <strong>demonstrable problem</strong> that is caused by the code in the repository.</p>
+<p>Guidelines for bug reports:</p>
+<ol>
+<li><strong>Use the GitHub issue search</strong> &mdash; check if the issue has already been reported.</li>
+<li><strong>Check if the issue has been fixed</strong> &mdash; try to reproduce it using the latest <code>master</code> or development branch in the repository.</li>
+<li><strong>Isolate the problem</strong> &mdash; create a test case to demonstrate your issue. Provide either a repo, gist, or code sample to demonstrate you problem.</li>
+</ol>
+<p>A good bug report shouldn&#39;t leave others needing to chase you up for more information. Please try to be as detailed as possible in your report. What is your environment? What steps will reproduce the issue? What browser(s) and/or Node.js versions experience the problem? What would you expect to be the outcome? All these details will help people to fix any potential bugs.</p>
+<p>Example:</p>
+<blockquote>
+<p>Short and descriptive example bug report title</p>
+<p>A summary of the issue and the browser/OS environment in which it occurs. If suitable, include the steps required to reproduce the bug.</p>
+<ol>
+<li>This is the first step</li>
+<li>This is the second step</li>
+<li>Further steps, etc.</li>
+</ol>
+<p><code>&lt;url&gt;</code> - a link to the reduced test case OR</p>
+<pre><code class="language-js">expect(a).to.equal(&#39;a&#39;);
+// code sample
+</code></pre>
+<p>Any other information you want to share that is relevant to the issue being reported. This might include the lines of code that you have identified as causing the bug, and potential solutions (and your opinions on their merits).</p>
+</blockquote>
+<p><a name="features"></a></p>
+<h3>Feature Requests</h3><p>Feature requests are welcome. But take a moment to find out whether your idea fits with the scope and aims of the project. It&#39;s up to <em>you</em> to make a strong case to convince the project&#39;s developers of the merits of this feature. Please provide as much detail and context as possible.</p>
+<p>Furthermore, since Chai.js has a <a href="http://chaijs.com/guide/plugins/">robust plugin API</a>, we encourage you to publish <strong>new Assertions</strong> as plugins. If your feature is an enhancement to an <strong>existing Assertion</strong>, please propose your changes as an issue prior to opening a pull request. If the core Chai.js contributors feel your plugin would be better suited as a core assertion, they will invite you to open a PR in <a href="https://github.com/chaijs/chai">chaijs/chai</a>.</p>
+<p><a name="pull-requests"></a></p>
+<h3>Pull Requests</h3><ul>
+<li>PRs for new core-assertions are advised against.</li>
+<li>PRs for core-assertion bug fixes are always welcome.</li>
+<li>PRs for enhancing the interfaces are always welcome.</li>
+<li>PRs that increase test coverage are always welcome.</li>
+<li>PRs are scrutinized for coding-style.</li>
+</ul>
+<p>Good pull requests - patches, improvements, new features - are a fantastic help. They should remain focused in scope and avoid containing unrelated commits.</p>
+<p><strong>Please ask first</strong> before embarking on any significant pull request (e.g. implementing features, refactoring code), otherwise you risk spending a lot of time working on something that the project&#39;s developers might not want to merge into the project.</p>
+<p>Please adhere to the coding conventions used throughout a project (indentation, accurate comments, etc.) and any other requirements (such as test coverage). Please review the <a href="https://github.com/chaijs/chai/wiki/Chai-Coding-Style-Guide">Chai.js Coding Style Guide</a>.</p>
+<p>Follow this process if you&#39;d like your work considered for inclusion in the project:</p>
+<ol>
+<li><a href="http://help.github.com/fork-a-repo/">Fork</a> the project, clone your fork, and configure the remotes:</li>
+</ol>
+<pre><code class="language-bash"># Clone your fork of the repo into the current directory
+git clone https://github.com/&lt;your-username&gt;/&lt;repo-name&gt;
+# Navigate to the newly cloned directory
+cd &lt;repo-name&gt;
+# Assign the original repo to a remote called &quot;upstream&quot;
+git remote add upstream https://github.com/&lt;upstream-owner&gt;/&lt;repo-name&gt;
+</code></pre>
+<ol>
+<li>If you cloned a while ago, get the latest changes from upstream:</li>
+</ol>
+<pre><code class="language-bash">git checkout &lt;dev-branch&gt;
+git pull upstream &lt;dev-branch&gt;
+</code></pre>
+<ol>
+<li>Create a new topic branch (off the main project development branch) to contain your feature, change, or fix:</li>
+</ol>
+<pre><code class="language-bash">git checkout -b &lt;topic-branch-name&gt;
+</code></pre>
+<ol>
+<li><p>Commit your changes in logical chunks. Use Git&#39;s <a href="https://help.github.com/articles/interactive-rebase">interactive rebase</a> feature to tidy up your commits before making them public.</p>
+</li>
+<li><p>Run you code to make sure it works. If you&#39;re still having problems please try to run <code>make clean</code> and then test your code again.</p>
+</li>
+</ol>
+<pre><code class="language-bash">npm test
+# when finished running tests...
+git checkout chai.js
+</code></pre>
+<ol>
+<li>Locally merge (or rebase) the upstream development branch into your topic branch:</li>
+</ol>
+<pre><code class="language-bash">git pull [--rebase] upstream &lt;dev-branch&gt;
+</code></pre>
+<ol>
+<li>Push your topic branch up to your fork:</li>
+</ol>
+<pre><code class="language-bash">git push origin &lt;topic-branch-name&gt;
+</code></pre>
+<ol>
+<li><a href="https://help.github.com/articles/using-pull-requests/">Open a Pull Request</a> with a clear title and description.</li>
+</ol>
+<p><strong>IMPORTANT</strong>: By submitting a patch, you agree to allow the project owner to license your work under the same license as that used by the project.</p>
+<p><a name="releasing"></a></p>
+<h2>Releasing</h2><p>Releases can be <strong>prepared</strong> by anyone with access to the code.</p>
+<p>Simply run <code>make release-major</code>, <code>make release-minor</code>, or <code>make-release-patch</code>
+and it will automatically do the following:</p>
+<ul>
+<li>Build chai.js</li>
+<li>Bump the version numbers accross the project</li>
+<li>Make a commit within git</li>
+</ul>
+<p>All you need to do is push the commit up and make a pull request, one of the core contributors will merge it and publish a release.</p>
+<h3>Publishing a Release</h3><p>Anyone who is a core contributor (see the <a href="https://github.com/chaijs/chai#core-contributors">Core Contributors Heading in the Readme</a>) can publish a release:</p>
+<ol>
+<li>Go to te <a href="https://github.com/chaijs/chai/releases">Releases page on Github</a></li>
+<li>Hit &quot;Draft a new release&quot; (if you can&#39;t see this, you&#39;re not a core contributor!)</li>
+<li>Write human-friendly Release Notes based on changelog.<ul>
+<li>The release title is &quot;x.x.x / YYYY-MM-DD&quot; (where x.x.x is the version number)</li>
+<li>If breaking changes, write migration tutorial(s) and reasoning.</li>
+<li>Callouts for community contributions (PRs) with links to PR and contributing user.</li>
+<li>Callouts for other fixes made by core contributors with links to issue.</li>
+</ul>
+</li>
+<li>Hit &quot;Save Draft&quot; and get other core contributors to check your work, or alternatively hit &quot;Publish release&quot;</li>
+<li>That&#39;s it!</li>
+</ol>
+<p><a name="support"></a></p>
+<h2>Support</h2><p><a name="resources"></a></p>
+<h3>Resources</h3><p>For most of the documentation you are going to want to visit <a href="http://chaijs.com">ChaiJS.com</a>.</p>
+<ul>
+<li><a href="http://chaijs.com/guide/">Getting Started Guide</a></li>
+<li><a href="http://chaijs.com/api/">API Reference</a></li>
+<li><a href="http://chaijs.com/plugins/">Plugins</a></li>
+</ul>
+<p>Alternatively, the <a href="https://github.com/chaijs/chai/wiki">wiki</a> might be what you are looking for.</p>
+<ul>
+<li><a href="https://github.com/chaijs/chai/wiki/Chai-Coding-Style-Guide">Chai Coding Style Guide</a></li>
+<li><a href="https://github.com/chaijs/chai/wiki/Third-Party-Resources">Third-party Resources</a></li>
+</ul>
+<p>Or finally, you may find a core-contributor or like-minded developer in any of our support channels.</p>
+<ul>
+<li>IRC: irc.freenode.org #chaijs</li>
+<li><a href="https://groups.google.com/forum/#!forum/chaijs">Mailing List / Google Group</a></li>
+</ul>
+<p><a name="contributors"></a></p>
+<h3>Core Contributors</h3><p>Feel free to reach out to any of the core-contributors with you questions or concerns. We will do our best to respond in a timely manner.</p>
+<ul>
+<li>Jake Luer<ul>
+<li>GH: <a href="https://github.com/logicalparadox">@logicalparadox</a></li>
+<li>TW: <a href="http://twitter.com/jakeluer">@jakeluer</a></li>
+<li>IRC: logicalparadox</li>
+</ul>
+</li>
+<li>Veselin Todorov<ul>
+<li>GH: <a href="https://github.com/vesln/">@vesln</a></li>
+<li>TW: <a href="http://twitter.com/vesln">@vesln</a></li>
+<li>IRC: vesln</li>
+</ul>
+</li>
+<li>Keith Cirkel<ul>
+<li>GH: <a href="https://github.com/keithamus">@keithamus</a></li>
+<li>TW: <a href="http://twitter.com/keithamus">@keithamus</a></li>
+<li>IRC: keithamus</li>
+</ul>
+</li>
+</ul>
+  </body>
+</html>

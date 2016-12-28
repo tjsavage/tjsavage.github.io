@@ -1,0 +1,208 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <h1>Sinon.JS Assertions for Chai</h1><p><strong>Sinon–Chai</strong> provides a set of custom assertions for using the <a href="http://sinonjs.org/">Sinon.JS</a> spy, stub, and mocking framework with the
+<a href="http://chaijs.com/">Chai</a> assertion library. You get all the benefits of Chai with all the powerful tools of Sinon.JS.</p>
+<p>Instead of using Sinon.JS&#39;s assertions:</p>
+<pre><code class="language-javascript">sinon.assertCalledWith(mySpy, &quot;foo&quot;);
+</code></pre>
+<p>or awkwardly trying to use Chai&#39;s <code>should</code> or <code>expect</code> interfaces on spy properties:</p>
+<pre><code class="language-javascript">mySpy.calledWith(&quot;foo&quot;).should.be.ok;
+expect(mySpy.calledWith(&quot;foo&quot;)).to.be.ok;
+</code></pre>
+<p>you can say</p>
+<pre><code class="language-javascript">mySpy.should.have.been.calledWith(&quot;foo&quot;);
+expect(mySpy).to.have.been.calledWith(&quot;foo&quot;);
+</code></pre>
+<h2>Assertions</h2><p>All of your favorite Sinon.JS assertions made their way into Sinon–Chai. We show the <code>should</code> syntax here; the <code>expect</code>
+equivalent is also available.</p>
+<table>
+    <thead>
+        <tr>
+            <th>Sinon.JS property/method</th>
+            <th>Sinon–Chai assertion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>called</td>
+            <td>spy.should.have.been.called</td>
+        </tr>
+        <tr>
+            <td>callCount</td>
+            <td>spy.should.have.callCount(n)</td>
+        </tr>
+        <tr>
+            <td>calledOnce</td>
+            <td>spy.should.have.been.calledOnce</td>
+        </tr>
+        <tr>
+            <td>calledTwice</td>
+            <td>spy.should.have.been.calledTwice</td>
+        </tr>
+        <tr>
+            <td>calledThrice</td>
+            <td>spy.should.have.been.calledThrice</td>
+        </tr>
+        <tr>
+            <td>calledBefore</td>
+            <td>spy1.should.have.been.calledBefore(spy2)</td>
+        </tr>
+        <tr>
+            <td>calledAfter</td>
+            <td>spy1.should.have.been.calledAfter(spy2)</td>
+        </tr>
+        <tr>
+            <td>calledWithNew</td>
+            <td>spy.should.have.been.calledWithNew</td>
+        </tr>
+        <tr>
+            <td>alwaysCalledWithNew</td>
+            <td>spy.should.always.have.been.calledWithNew</td>
+        </tr>
+        <tr>
+            <td>calledOn</td>
+            <td>spy.should.have.been.calledOn(context)</td>
+        </tr>
+        <tr>
+            <td>alwaysCalledOn</td>
+            <td>spy.should.always.have.been.calledOn(context)</td>
+        </tr>
+        <tr>
+            <td>calledWith</td>
+            <td>spy.should.have.been.calledWith(...args)</td>
+        </tr>
+        <tr>
+            <td>alwaysCalledWith</td>
+            <td>spy.should.always.have.been.calledWith(...args)</td>
+        </tr>
+        <tr>
+            <td>calledWithExactly</td>
+            <td>spy.should.have.been.calledWithExactly(...args)</td>
+        </tr>
+        <tr>
+            <td>alwaysCalledWithExactly</td>
+            <td>spy.should.always.have.been.calledWithExactly(...args)</td>
+        </tr>
+        <tr>
+            <td>calledWithMatch</td>
+            <td>spy.should.have.been.calledWithMatch(...args)</td>
+        </tr>
+        <tr>
+            <td>alwaysCalledWithMatch</td>
+            <td>spy.should.always.have.been.calledWithMatch(...args)</td>
+        </tr>
+        <tr>
+            <td>returned</td>
+            <td>spy.should.have.returned(returnVal)</td>
+        </tr>
+        <tr>
+            <td>alwaysReturned</td>
+            <td>spy.should.have.always.returned(returnVal)</td>
+        </tr>
+        <tr>
+            <td>threw</td>
+            <td>spy.should.have.thrown(errorObjOrErrorTypeStringOrNothing)</td>
+        </tr>
+        <tr>
+            <td>alwaysThrew</td>
+            <td>spy.should.have.always.thrown(errorObjOrErrorTypeStringOrNothing)</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>For more information on the behavior of each assertion, see
+<a href="http://sinonjs.org/docs/#spies-api">the documentation for the corresponding spy methods</a>. These of course work on not only spies, but
+individual spy calls, stubs, and mocks as well.</p>
+<p>Note that you can negate any assertion with Chai&#39;s <code>.not</code>. E. g. for <code>notCalled</code> use <code>spy.should.have.not.been.called</code>.</p>
+<p>For <code>assert</code> interface there is no need for this library. You can install <a href="http://sinonjs.org/docs/#assertions">Sinon.JS assertions</a> right into Chai&#39;s <code>assert</code> object with <code>expose</code>:</p>
+<pre><code class="language-javascript">var chai = require(&quot;chai&quot;);
+var sinon = require(&quot;sinon&quot;);
+
+sinon.assert.expose(chai.assert, { prefix: &quot;&quot; });
+</code></pre>
+<h2>Examples</h2><p>Using Chai&#39;s <code>should</code>:</p>
+<pre><code class="language-javascript">&quot;use strict&quot;;
+var chai = require(&quot;chai&quot;);
+var sinon = require(&quot;sinon&quot;);
+var sinonChai = require(&quot;sinon-chai&quot;);
+chai.should();
+chai.use(sinonChai);
+
+function hello(name, cb) {
+    cb(&quot;hello &quot; + name);
+}
+
+describe(&quot;hello&quot;, function () {
+    it(&quot;should call callback with correct greeting&quot;, function () {
+        var cb = sinon.spy();
+
+        hello(&quot;foo&quot;, cb);
+
+        cb.should.have.been.calledWith(&quot;hello foo&quot;);
+    });
+});
+</code></pre>
+<p>Using Chai&#39;s <code>expect</code>:</p>
+<pre><code class="language-javascript">&quot;use strict&quot;;
+var chai = require(&quot;chai&quot;);
+var sinon = require(&quot;sinon&quot;);
+var sinonChai = require(&quot;sinon-chai&quot;);
+var expect = chai.expect;
+chai.use(sinonChai);
+
+function hello(name, cb) {
+    cb(&quot;hello &quot; + name);
+}
+
+describe(&quot;hello&quot;, function () {
+    it(&quot;should call callback with correct greeting&quot;, function () {
+        var cb = sinon.spy();
+
+        hello(&quot;foo&quot;, cb);
+
+        expect(cb).to.have.been.calledWith(&quot;hello foo&quot;);
+    });
+});
+</code></pre>
+<h2>Installation and Usage</h2><h3>Node</h3><p>Do an <code>npm install sinon-chai</code> to get up and running. Then:</p>
+<pre><code class="language-javascript">var chai = require(&quot;chai&quot;);
+var sinonChai = require(&quot;sinon-chai&quot;);
+
+chai.use(sinonChai);
+</code></pre>
+<p>You can of course put this code in a common test fixture file; for an example using <a href="http://visionmedia.github.com/mocha/">Mocha</a>, see
+<a href="https://github.com/domenic/sinon-chai/tree/master/test/">the Sinon–Chai tests themselves</a>.</p>
+<h3>AMD</h3><p>Sinon–Chai supports being used as an <a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD</a> module, registering itself anonymously (just like Chai). So, assuming you
+have configured your loader to map the Chai and Sinon–Chai files to the respective module IDs <code>&quot;chai&quot;</code> and
+<code>&quot;sinon-chai&quot;</code>, you can use them as follows:</p>
+<pre><code class="language-javascript">define(function (require, exports, module) {
+    var chai = require(&quot;chai&quot;);
+    var sinonChai = require(&quot;sinon-chai&quot;);
+
+    chai.use(sinonChai);
+});
+</code></pre>
+<h3><code>&lt;script&gt;</code> tag</h3><p>If you include Sinon–Chai directly with a <code>&lt;script&gt;</code> tag, after the one for Chai itself, then it will automatically plug
+in to Chai and be ready for use. Note that you&#39;ll want to get the latest browser build of Sinon.JS as well:</p>
+<pre><code class="language-html">&lt;script src=&quot;chai.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;sinon-chai.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;sinon.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h3>Ruby on Rails</h3><p>Thanks to <a href="https://github.com/cymen">Cymen Vig</a>, there&#39;s now <a href="https://github.com/cymen/sinon-chai-rails">a Ruby gem</a> of Sinon–Chai that integrates it with the Rails asset pipeline!</p>
+  </body>
+</html>

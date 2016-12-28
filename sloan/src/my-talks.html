@@ -1,0 +1,141 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<dom-module id="my-talks">
+  <template>
+    <style include="shared-styles iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+
+        padding: 20px;
+      }
+
+      .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 30px; 
+        height: 0;
+        overflow: hidden;
+      }
+
+      .video-container iframe,
+      .video-container object,
+      .video-container embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%
+      }
+    </style>
+
+    <div class="card">
+      <div class="circle">2016</div>
+      <h1>Polymer and Progressive Web Apps</h1>
+      <p>Google I/O, Mountain View</p>
+      <p>This talk laid out the philosophical foundation for how we think about constructing modern web applications at Google. It introduced our now-pervasive slogan "Use The Platform" and set up a major transformation of the project towards a broader vision and scope.</p>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/fFF2Yup2dMM" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="circle">2016</div>
+      <h1>Web Components and Polymer</h1>
+      <p>Chrome Developer Summit, San Francisco</p>
+      <p>I gave this talk with an engineer on the Polymer team. It presented some of the major updates with Web Component technology and the Polymer Project, targeted towards general web developers.</p>
+      <div class="video-container">
+        <iframe class="video"
+        width="853" height="480" src="https://www.youtube.com/embed/Ihdp63FaRKA" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="circle">2016</div>
+      <h1>Building the Next Generation Mobile Web</h1>
+      <p>Chrome Developer Summit, San Francisco</p>
+      <p>I worked with an agency to  produce this video, a quick look at the most powerful new features of the modern mobile web. I ended up handling the voiceover as well. It provided the introduction for the 2016 Chrome Developer Summit.</p>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/3tb-1MWg44Y" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="circle">2016</div>
+      <h1>Polymer: How We Got Here and Where We're Going</h1>
+      <p>PolymerDay, Madrid</p>
+      <p>This talk kicked off PolymerDay, a two-day conference sponsored by companies in Spain using Polymer at an incredible venue in downtown Madrid. Unfortunately my Spanish is too rusty, so I gave this talk in English.</p>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/mdqcSIpk8XY" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="circle">2016</div>
+      <h1>Keynote</h1>
+      <p>Polymer Summit, London</p>
+      <p>I kicked off the 2016 Polymer Summit - the project's major international developer conference - with some major announcements about the next version of Polymer, Polymer 2.0.</p>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/VBbejeKHrjg" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="circle">2015</div>
+      <h1>Polymer State of the Union</h1>
+      <p>Chrome Developer Summit, Mountain View</p>
+      <p>I presented the overall picture of Polymer and Web Components to Chrome and Web developers.</p>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/lck68wyVUo4" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="circle">2015</div>
+      <h1>Keynote</h1>
+      <p>Polymer Summit, Amsterdam</p>
+      <p>The Polymer Summit 2015 was our first major international developer conference for the project.</p>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/jVn8tlnwAEs" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="circle">2015</div>
+      <h1>Polymer & Modern Web API's: In Production at Google Scale</h1>
+      <p>Google I/O, San Francisco</p>
+      <p>We launched Polymer 1.0 in this talk, a huge milestone for the project.</p>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/fD2As5RmM8Q" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="circle">2015</div>
+      <h1>Component-Driven Web Development with Polymer</h1>
+      <p>Applicative, New York</p>
+      <p>I gave this talk at Applicative, a conference by the Association for Computing Machinery, as an overview of what Polymer and Web Components can do.</p>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/tL_FDsokAyI?list=PLn0nrSd4xjjZoaFwsTnmS1UFj3ob7gf7s" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-talks'
+    });
+  </script>
+</dom-module>

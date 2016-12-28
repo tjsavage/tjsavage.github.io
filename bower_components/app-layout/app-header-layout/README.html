@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <p>##&lt;app-header-layout&gt;</p>
+<p>app-header-layout is a wrapper element that positions an app-header and other content. This
+element uses the document scroll by default, but it can also define its own scrolling region.</p>
+<p>Using the document scroll:</p>
+<pre><code class="language-html">&lt;app-header-layout&gt;
+  &lt;app-header fixed condenses effects=&quot;waterfall&quot;&gt;
+    &lt;app-toolbar&gt;
+      &lt;div main-title&gt;App name&lt;/div&gt;
+    &lt;/app-toolbar&gt;
+  &lt;/app-header&gt;
+  &lt;div&gt;
+    main content
+  &lt;/div&gt;
+&lt;/app-header-layout&gt;
+</code></pre>
+<p>Using an own scrolling region:</p>
+<pre><code class="language-html">&lt;app-header-layout has-scrolling-region style=&quot;width: 300px; height: 400px;&quot;&gt;
+  &lt;app-header fixed condenses effects=&quot;waterfall&quot;&gt;
+    &lt;app-toolbar&gt;
+      &lt;div main-title&gt;App name&lt;/div&gt;
+    &lt;/app-toolbar&gt;
+  &lt;/app-header&gt;
+  &lt;div&gt;
+    main content
+  &lt;/div&gt;
+&lt;/app-header-layout&gt;
+</code></pre>
+<p>Add the <code>fullbleed</code> attribute to app-header-layout to make it fit the size of its container:</p>
+<pre><code class="language-html">&lt;app-header-layout fullbleed&gt;
+ ...
+&lt;/app-header-layout&gt;
+</code></pre>
+  </body>
+</html>

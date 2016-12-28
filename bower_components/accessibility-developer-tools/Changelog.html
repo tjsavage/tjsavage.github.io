@@ -1,0 +1,132 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <h2>2.11.0 - 2016-09-14</h2><h3>Enhancements</h3><ul>
+<li>Performance enhancements (#263)</li>
+</ul>
+<h2>2.10.1-rc.0 - 2016-01-13</h2><h3>Bug fixes:</h3><ul>
+<li>Escape special characters to be used in a query selector string (PR #267)</li>
+<li>Fix exception thrown by RoleTooltipRequiresDescribedBy.js (#269)</li>
+</ul>
+<h2>2.10.0 - 2015-11-13</h2><h2>2.10.0-rc.1 - 2015-10-19</h2><h3>Bug fixes:</h3><ul>
+<li><code>linkWithUnclearPurpose</code> should only look at links, not <code>&lt;a&gt;</code> without <code>href</code>. (#245)</li>
+</ul>
+<h2>2.10.0-rc.0 - 2015-10-09</h2><h3>New rules</h3><ul>
+<li>A tabpanel should be related to a tab via aria-controls or aria-labelledby (<code>src/audits/UncontrolledTabpanel.js</code>)</li>
+<li>A data table must identify row and column headers (<code>src/audits/TableHasAppropriateHeaders.js</code>)</li>
+<li>A tooltip element should have an aria-describedby referring to it (<code>src/audits/RoleTooltipRequiresDescribedBy.js</code>).</li>
+</ul>
+<h3>Enhancements</h3><ul>
+<li>Pull DOM-related functionality out into <code>DOMUtils.js</code></li>
+</ul>
+<h3>Bug fixes:</h3><ul>
+<li>Fix <code>findTextAlternatives</code> not always correctly ignoring hidden elements (#217).</li>
+<li><code>findTextAlternatives</code> now honors <code>alt</code> attribute of input type image</li>
+<li>Revert #150 which was causing the extension not to work.</li>
+<li>AX_HTML_02 (duplicate IDs) now only audits elements that are referenced by an IDREF (#141);</li>
+<li>Fix #171 by being smarter about finding the composed parent node.</li>
+<li>Tweak in canScrollTo to handle the (common) case where the container is <code>document.body</code> (#243).</li>
+</ul>
+<h2>2.9.0 - 2015-09-04</h2><h2>2.9.0-rc.0 - 2015-08-21</h2><h3>New rules</h3><ul>
+<li>A label element may not have labelable descendants other than its labeled control (<code>src/audits/MultipleLabelableElementsPerLabel.js</code>)</li>
+</ul>
+<h3>Enhancements</h3><ul>
+<li>Implement support for specifying audit configuration options through an object when initializing audits (#165).</li>
+<li>Implement support for AMD loaders.</li>
+</ul>
+<h3>Bug fixes:</h3><ul>
+<li>Fix <code>badAriaAttributeValue</code> not correctly handling decimal values (#182).</li>
+<li>Work around null pointer exception caused by closure compiler issue (#183).</li>
+<li>Add a special case to handle color <code>&quot;transparent&quot;</code> to fix (#180).</li>
+<li>Fix <code>matchSelector</code> not working properly in browser environments without vendor prefixes (#189).</li>
+<li>Fix false positives on elements with no role for Unsupported ARIA Attribute rule (#178 and #199).</li>
+<li>Fix ARIA <code>tablist</code> and ARIA <code>tab</code> scope (#204)</li>
+<li>Fix link with clear purpose with text alternative (#156);</li>
+<li>Handle edge cases in number parser, e.g. &quot;+1&quot;, &quot;.1&quot;, &quot;01&quot;</li>
+<li>HTML button containing img with alt attribute now passes controlsWithoutLabel (#202)</li>
+<li>Disabled elements should be ignored by low contrast audit (#205)</li>
+<li>Fix input of type &quot;text&quot; did not find correct implied role (#225)</li>
+<li>Hidden links are no longer relevant for meaningful link text rule.</li>
+</ul>
+<h2>2.8.0 - 2015-07-24</h2><h2>2.8.0-rc.0 - 2015-07-10</h2><h3>Enhancements:</h3><ul>
+<li>Pull color code into separate file.</li>
+<li>Improve color suggestion algorithm.</li>
+<li>Descend into iframes when collecting matching elements.</li>
+</ul>
+<h2>2.7.1 - 2015-06-30</h2><h2>2.7.1-rc.1 - 2015-06-23</h2><h3>Bug fixes:</h3><ul>
+<li>Check for null <code>textAlternatives</code> in <code>FocusableElementNotVisibleAndNotAriaHidden</code>&#39;s <code>relevantElementMatcher</code> method.</li>
+</ul>
+<h2>2.7.1-rc.0 - 2015-06-15</h2><h3>Enhancements:</h3><ul>
+<li>Rework findTextAlternatives not to return non-exposed text alternatives.</li>
+<li>Add Bower config (#157)</li>
+</ul>
+<h3>Bug fixes:</h3><ul>
+<li>Check for any text alternatives when assessing unlabeled images (#154).</li>
+</ul>
+<h2>2.7.0 - 2015-05-15</h2><h3>New rules</h3><ul>
+<li>This element does not support ARIA roles, states and properties (<code>src/audits/AriaOnReservedElement.js</code>)</li>
+<li>aria-owns should not be used if ownership is implicit in the DOM (<code>src/audits/AriaOwnsDescendant.js</code>)</li>
+<li>Elements with ARIA roles must be in the correct scope (<code>src/audits/AriaRoleNotScoped.js</code>)</li>
+<li>An element&#39;s ID must be unique in the DOM (<code>src/audits/DuplicateId.js</code>)</li>
+<li>The web page should have the content&#39;s human language indicated in the markup (<code>src/audits/HumanLangMissing.js</code>)</li>
+<li>An element&#39;s ID must not be present in more that one aria-owns attribute at any time (<code>src/audits/MultipleAriaOwners.js</code>)</li>
+<li>ARIA attributes which refer to other elements by ID should refer to elements which exist in the DOM (<code>src/audits/NonExistentAriaRelatedElement.js</code> - previously <code>src/audits/NonExistentAriaLabeledBy.js</code>)</li>
+<li>Elements with ARIA roles must ensure required owned elements are present (<code>src/audits/RequiredOwnedAriaRoleMissing.js</code>)</li>
+<li>Avoid positive integer values for tabIndex (<code>src/audits/TabIndexGreaterThanZero.js</code>)</li>
+<li>This element has an unsupported ARIA attribute (<code>src/audits/UnsupportedAriaAttribute.js</code>)</li>
+</ul>
+<h3>Enhancements:</h3><ul>
+<li>Add configurable blacklist phrases and stop words to LinkWithUnclearPurpose (#99)</li>
+<li>Detect and warn if we reuse the same code for more than one rule. (#133)</li>
+<li>Force focus before testing visibility on focusable elements. (#65)</li>
+<li>Use getDistributedNodes to get nodes distributed into shadowRoots (#128)</li>
+<li>Add section to Audit Rules page for HumanLangMissing and link to it from rule (#119)</li>
+<li>Reference &quot;applied role&quot; in axs.utils.getRoles enhancement (#130)</li>
+<li>Add warning that AX_FOCUS_02 is not available from axs.Audit.run() (#85)</li>
+</ul>
+<h3>Bug fixes:</h3><ul>
+<li>Incorrect use of nth-of-type against className in utils.getQuerySelectorText (#87)</li>
+<li>AX_TEXT_01 Accessibility Audit test should probably ignore role=presentation elements (#97)</li>
+<li>Fix path to audit rules in phantomjs runner (#108)</li>
+<li>Label audit should fail if form fields lack a label, even with placeholder text (#81)</li>
+<li>False positives for controls without labels with role=presentation (#23)</li>
+<li>Fix &quot;valid&quot; flag on return value of axs.utils.getRoles (#131)</li>
+</ul>
+<p>Note: this version number is somewhat arbitrary - just bringing it vaguely in line with <a href="https://github.com/GoogleChrome/accessibility-developer-tools-extension">the extension</a> since that&#39;s where the library originated - but will use semver for version bumps going forward from here.</p>
+<h2>0.0.5 - 2014-02-04</h2><h3>Enhancements:</h3><ul>
+<li>overlapping elements detection code made more sophisticated</li>
+<li>axs.properties.getFocusProperties() returns more information about visibility</li>
+<li>new axs.properties.hasDirectTextDescendant() method with more sophisticated detection of text content</li>
+</ul>
+<h3>Bug fixes:</h3><ul>
+<li>FocusableElementNotVisibleAndNotAriaHidden audit passes on elements which are brought onscreen on focus</li>
+<li>UnfocusableElementsWithOnclick checks for element.disabled</li>
+<li>Fix infinite loop when getting descendant text content of a label containing an input</li>
+<li>Detect elements which are out of scroll area of any parent element, not just the document scroll area</li>
+<li>findTextAlternatives doesn&#39;t throw TypeError if used on a HTMLSelectElement</li>
+</ul>
+<h2>0.0.4 - 2013-10-03</h2><h3>Enhancements:</h3><ul>
+<li>axs.AuditRule.run() has a new signature: it now takes an options object. Please see method documentation for details.</li>
+<li>Audit Rule severity can be overridden (per Audit Rule) in AuditConfig.</li>
+</ul>
+<h3>Bug fixes:</h3><ul>
+<li>axs.utils.isLowContrast() now rounds to the nearest 0.1 before checking (so <code>#777</code> is now a passing value)</li>
+<li>MainRoleOnInappropriateElement was always failing due to accessible name calculation taking the main role into account and not descending into content (now just gets descendant content directly)</li>
+<li>UnfocusableElementsWithOnClick had a dangling if-statement causing very noisy false positives</li>
+</ul>
+  </body>
+</html>

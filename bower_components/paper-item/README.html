@@ -1,0 +1,242 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <!---
+
+This README is automatically generated from the comments in these files:
+paper-icon-item.html  paper-item-behavior.html  paper-item-body.html  paper-item.html
+
+Edit those files, and our readme bot will duplicate them over here!
+Edit this file, and the bot will squash your changes :)
+
+The bot does some handling of markdown. Please file a bug if it does the wrong
+thing! https://github.com/PolymerLabs/tedium/issues
+
+-->
+<p><a href="https://travis-ci.org/PolymerElements/paper-item"><img src="https://travis-ci.org/PolymerElements/paper-item.svg?branch=master" alt="Build status"></a></p>
+<p><em><a href="https://elements.polymer-project.org/elements/paper-item">Demo and API docs</a></em></p>
+<p>##&lt;paper-item&gt;</p>
+<p>Material design: <a href="https://www.google.com/design/spec/components/lists.html">Lists</a></p>
+<p><code>&lt;paper-item&gt;</code> is an interactive list item. By default, it is a horizontal flexbox.</p>
+<pre><code class="language-html">&lt;paper-item&gt;Item&lt;/paper-item&gt;
+</code></pre>
+<p>Use this element with <code>&lt;paper-item-body&gt;</code> to make Material Design styled two-line and three-line
+items.</p>
+<pre><code class="language-html">&lt;paper-item&gt;
+  &lt;paper-item-body two-line&gt;
+    &lt;div&gt;Show your status&lt;/div&gt;
+    &lt;div secondary&gt;Your status is visible to everyone&lt;/div&gt;
+  &lt;/paper-item-body&gt;
+  &lt;iron-icon icon=&quot;warning&quot;&gt;&lt;/iron-icon&gt;
+&lt;/paper-item&gt;
+</code></pre>
+<p>To use <code>paper-item</code> as a link, wrap it in an anchor tag. Since <code>paper-item</code> will
+already receive focus, you may want to prevent the anchor tag from receiving
+focus as well by setting its tabindex to -1.</p>
+<pre><code class="language-html">&lt;a href=&quot;https://www.polymer-project.org/&quot; tabindex=&quot;-1&quot;&gt;
+  &lt;paper-item raised&gt;Polymer Project&lt;/paper-item&gt;
+&lt;/a&gt;
+</code></pre>
+<p>If you are concerned about performance and want to use <code>paper-item</code> in a <code>paper-listbox</code>
+with many items, you can just use a native <code>button</code> with the <code>paper-item</code> class
+applied (provided you have correctly included the shared styles):</p>
+<pre><code class="language-html">&lt;style is=&quot;custom-style&quot; include=&quot;paper-item-shared-styles&quot;&gt;&lt;/style&gt;
+
+&lt;paper-listbox&gt;
+  &lt;button class=&quot;paper-item&quot; role=&quot;option&quot;&gt;Inbox&lt;/button&gt;
+  &lt;button class=&quot;paper-item&quot; role=&quot;option&quot;&gt;Starred&lt;/button&gt;
+  &lt;button class=&quot;paper-item&quot; role=&quot;option&quot;&gt;Sent mail&lt;/button&gt;
+&lt;/paper-listbox&gt;
+</code></pre>
+<h3>Styling</h3><p>The following custom properties and mixins are available for styling:</p>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--paper-item-min-height</code></td>
+<td>Minimum height of the item</td>
+<td><code>48px</code></td>
+</tr>
+<tr>
+<td><code>--paper-item</code></td>
+<td>Mixin applied to the item</td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-selected-weight</code></td>
+<td>The font weight of a selected item</td>
+<td><code>bold</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-selected</code></td>
+<td>Mixin applied to selected paper-items</td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-disabled-color</code></td>
+<td>The color for disabled paper-items</td>
+<td><code>--disabled-text-color</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-disabled</code></td>
+<td>Mixin applied to disabled paper-items</td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-focused</code></td>
+<td>Mixin applied to focused paper-items</td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-focused-before</code></td>
+<td>Mixin applied to :before focused paper-items</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<h3>Accessibility</h3><p>This element has <code>role=&quot;listitem&quot;</code> by default. Depending on usage, it may be more appropriate to set
+<code>role=&quot;menuitem&quot;</code>, <code>role=&quot;menuitemcheckbox&quot;</code> or <code>role=&quot;menuitemradio&quot;</code>.</p>
+<pre><code class="language-html">&lt;paper-item role=&quot;menuitemcheckbox&quot;&gt;
+  &lt;paper-item-body&gt;
+    Show your status
+  &lt;/paper-item-body&gt;
+  &lt;paper-checkbox&gt;&lt;/paper-checkbox&gt;
+&lt;/paper-item&gt;
+</code></pre>
+<p>##&lt;paper-icon-item&gt;</p>
+<p><code>&lt;paper-icon-item&gt;</code> is a convenience element to make an item with icon. It is an interactive list
+item with a fixed-width icon area, according to Material Design. This is useful if the icons are of
+varying widths, but you want the item bodies to line up. Use this like a <code>&lt;paper-item&gt;</code>. The child
+node with the attribute <code>item-icon</code> is placed in the icon area.</p>
+<pre><code class="language-html">&lt;paper-icon-item&gt;
+  &lt;iron-icon icon=&quot;favorite&quot; item-icon&gt;&lt;/iron-icon&gt;
+  Favorite
+&lt;/paper-icon-item&gt;
+&lt;paper-icon-item&gt;
+  &lt;div class=&quot;avatar&quot; item-icon&gt;&lt;/div&gt;
+  Avatar
+&lt;/paper-icon-item&gt;
+</code></pre>
+<h3>Styling</h3><p>The following custom properties and mixins are available for styling:</p>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--paper-item-icon-width</code></td>
+<td>Width of the icon area</td>
+<td><code>56px</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-icon</code></td>
+<td>Mixin applied to the icon area</td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>--paper-icon-item</code></td>
+<td>Mixin applied to the item</td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-selected-weight</code></td>
+<td>The font weight of a selected item</td>
+<td><code>bold</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-selected</code></td>
+<td>Mixin applied to selected paper-items</td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-disabled-color</code></td>
+<td>The color for disabled paper-items</td>
+<td><code>--disabled-text-color</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-disabled</code></td>
+<td>Mixin applied to disabled paper-items</td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-focused</code></td>
+<td>Mixin applied to focused paper-items</td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-focused-before</code></td>
+<td>Mixin applied to :before focused paper-items</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<p>##&lt;paper-item-body&gt;</p>
+<p>Use <code>&lt;paper-item-body&gt;</code> in a <code>&lt;paper-item&gt;</code> or <code>&lt;paper-icon-item&gt;</code> to make two- or
+three- line items. It is a flex item that is a vertical flexbox.</p>
+<pre><code class="language-html">&lt;paper-item&gt;
+  &lt;paper-item-body two-line&gt;
+    &lt;div&gt;Show your status&lt;/div&gt;
+    &lt;div secondary&gt;Your status is visible to everyone&lt;/div&gt;
+  &lt;/paper-item-body&gt;
+&lt;/paper-item&gt;
+</code></pre>
+<p>The child elements with the <code>secondary</code> attribute is given secondary text styling.</p>
+<h3>Styling</h3><p>The following custom properties and mixins are available for styling:</p>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--paper-item-body-two-line-min-height</code></td>
+<td>Minimum height of a two-line item</td>
+<td><code>72px</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-body-three-line-min-height</code></td>
+<td>Minimum height of a three-line item</td>
+<td><code>88px</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-body-secondary-color</code></td>
+<td>Foreground color for the <code>secondary</code> area</td>
+<td><code>--secondary-text-color</code></td>
+</tr>
+<tr>
+<td><code>--paper-item-body-secondary</code></td>
+<td>Mixin applied to the <code>secondary</code> area</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<!-- No docs for Polymer.PaperItemBehavior found. -->
+  </body>
+</html>

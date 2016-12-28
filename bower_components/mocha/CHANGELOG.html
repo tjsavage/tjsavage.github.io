@@ -1,0 +1,863 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <h1>2.5.3 / 2016-05-25</h1><ul>
+<li><a href="https://github.com/mochajs/mocha/pull/2112">#2112</a> - Fix HTML reporter regression causing duplicate error output (<a href="https://github.com/danielstjules">@danielstjules</a> via 6d24063)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2119">#2119</a> - Make HTML reporter failure/passed links preventDefault to avoid SPA&#39;s hash navigation (<a href="https://github.com/jimenglish81">@jimenglish81</a> via 9e93efc)</li>
+</ul>
+<h1>2.5.2 / 2016-05-24</h1><ul>
+<li><a href="https://github.com/mochajs/mocha/pull/2178">#2178</a> - Avoid double and triple xUnit XML escaping (<a href="https://github.com/graingert">@graingert</a> via 49b5ff1)</li>
+</ul>
+<h1>2.5.1 / 2016-05-23</h1><ul>
+<li>Fix <a href="https://npmjs.com/package/to-iso-string">to-iso-string</a> dependency (<a href="https://github.com/boneskull">@boneskull</a> via bd9450b)</li>
+</ul>
+<p>Thanks @entertainyou, @SimenB, @just-paja for the heads-up.</p>
+<h1>2.5.0 / 2016-05-23</h1><blockquote>
+<p>This has been awhile coming!  We needed to feel confident that the next release wouldn&#39;t break browser compatibility (e.g. the last few patch releases).</p>
+<h3>Browser Tests in CI</h3><p>We now run unit tests against PhantomJS v1.x and an assortment of browsers on <a href="https://saucelabs.com">SauceLabs</a>, including:</p>
+<ul>
+<li>Internet Explorer v8.0</li>
+<li>Chrome (latest)</li>
+<li>Firefox (latest)</li>
+<li>Safari (latest)</li>
+<li>Microsoft Edge (latest)</li>
+</ul>
+<p>To accomplish this, we now run Mocha&#39;s unit tests (and a handful of integration tests) via <a href="https://npmjs.com/package/karma">Karma</a> and a modified <a href="https://npmjs.com/package/karma-mocha">karma-mocha</a>.  Along the way, we had to solve issue <a href="https://github.com/mochajs/mocha/issues/880">#880</a> (apologies to @mderijcke and @sukima who had PRs addressing this), as well as replace most usages of <a href="https://npmjs.com/package/should">should</a> with <a href="https://npmjs.com/package/expect.js">expect.js</a> for IE8.</p>
+<p>Going forward, when sending PRs, your code will <em>only</em> run against PhantomJS v1.x (and not hit SauceLabs) <a href="https://docs.travis-ci.com/user/pull-requests/#Security-Restrictions-when-testing-Pull-Requests">because security</a>.</p>
+<h3>Node.js 6.x</h3><p>Node.js 6.x &quot;just worked&quot; before, but now it&#39;s in the CI matrix, so it&#39;s &quot;officially&quot; supported.  Mocha <em>still retains support</em> for Node.js 0.8.x.</p>
+<h3>&quot;Minor&quot; Release</h3><p>You&#39;ll see mostly bug fixes below, but also a couple features--as such, it&#39;s a &quot;minor&quot; release.</p>
+<h3>TYVM</h3><p>Thanks to everyone who contributed, and our fabulous <a href="https://opencollective.com/mochajs">sponsors and backers</a>!</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/mochajs/mocha/issues/2079">#2079</a> - Add browser checks to CI; update <a href="https://npmjs.com/package/browserify">browserify</a> to v13.0.0 (<a href="https://github.com/dasilvacontin">@dasilvacontin</a>, <a href="https://github.com/ScottFreeCode">@ScottFreeCode</a>, <a href="https://github.com/boneskull">@boneskull</a> via c04c1d7, 0b1e9b3, 0dde0fa, f8a3d86, 9e8cbaa)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/880">#880</a> - Make Mocha browserifyable (<a href="https://github.com/boneskull">@boneskull</a> via 524862b)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/2121">#2121</a> - Update <a href="https://npmjs.com/package/glob">glob</a> to v3.2.11 (<a href="https://github.com/astorije">@astorije</a> via 7920fc4)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/2126">#2126</a> - Fix dupe error messages in stack trace filter (<a href="https://github.com/Turbo87">@Turbo87</a> via 4301caa)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/2109">#2109</a> - Fix certain diffs when objects cannot be coerced into primitives (<a href="https://github.com/joshlory">@joshlory</a> via 61fbb7f)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/1827">#1827</a> - Fix TWBS/<code>mocha.css</code> collisions (<a href="https://github.com/irnc">@irnc</a> via 0543798)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1760">#1760</a>, <a href="https://github.com/mochajs/mocha/issues/1936">#1936</a> - Fix <code>this.skip()</code> in HTML reporter (<a href="https://github.com/mislav">@mislav</a> via cb4248b)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2115">#2115</a> - Fix exceptions thrown from hooks in HTML reporter (<a href="https://github.com/danielstjules">@danielstjules</a> via e290bc0)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/2089">#2089</a> - Handle Symbol values in <code>util.stringify()</code> (<a href="https://github.com/ryym">@ryym</a> via ea61d05)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2097">#2097</a> - Fix diff for objects overriding <code>Object.prototype.hasOwnProperty</code> (<a href="https://github.com/mantoni">@mantoni</a> via b20fdfe)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2101">#2101</a> - Properly handle non-string &quot;messages&quot; thrown from assertion libraries (<a href="https://github.com/jkimbo">@jkimbo</a> via 9c41051)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2124">#2124</a> - Update <a href="https://npmjs.com/package/growl">growl</a> (<a href="https://github.com/benjamine">@benjamine</a> via 9ae6a85)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2162">#2162</a>, <a href="https://github.com/mochajs/mocha/pull/2205">#2205</a> - JSDoc fixes (<a href="https://github.com/OlegTsyba">@OlegTsyba</a> via 8031f20, <a href="https://github.com/ScottFreeCode">@ScottFreeCode</a> via f83b1d9)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/2132">#2132</a> - Remove Growl-related cruft (<a href="https://github.com/julienw">@julienw</a> via 00d6469)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2172">#2172</a> - Add <a href="https://opencollective.com">OpenCollective</a> badge, sponsors &amp; backers (<a href="https://github.com/xdamman">@xdamman</a>, <a href="https://github.com/boneskull">@boneskull</a> via caee94f)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/1841">#1841</a> - Add new logo, banner assets (<a href="https://github.com/dasilvacontin">@dasilvacontin</a> via 00fd0e1)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2214">#2214</a> - Update <code>README.md</code> header (<a href="https://github.com/dasilvacontin">@dasilvacontin</a> via c0f9be2)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2236">#2236</a> - Better checks for Node.js v0.8 compatibility in CI (<a href="https://github.com/dasilvacontin">@dasilvacontin</a> via ba5637d)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/2239">#2239</a> - Add Node.js v6.x to CI matrix (<a href="https://github.com/boneskull">@boneskull</a> via 3904da4)</li>
+</ul>
+<h1>2.4.5 / 2016-01-28</h1><ul>
+<li><a href="https://github.com/mochajs/mocha/issues/2080">#2080</a>, <a href="https://github.com/mochajs/mocha/issues/2078">#2078</a>, <a href="https://github.com/mochajs/mocha/pull/2072">#2072</a>, <a href="https://github.com/mochajs/mocha/pull/2073">#2073</a>, <a href="https://github.com/mochajs/mocha/issues/1200">#1200</a> - Revert changes to console colors in changeset <a href="https://github.com/mochajs/mocha/commit/119291449cd03a11cdeda9e37cf718a69a012896">1192914</a> and subsequent related changes thereafter.  Restores compatibility with IE8 &amp; PhantomJS.  See also <a href="https://github.com/mantoni/mochify.js/issues/129">mantoni/mochify.js#129</a> and <a href="https://github.com/openlayers/ol3/pull/4746">openlayers/ol3#4746</a> (<a href="https://github.com/boneskull">@boneskull</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2082">#2082</a> - Fix several test assertions (<a href="https://github.com/mislav">@mislav</a>)</li>
+</ul>
+<h1>2.4.4 / 2016-01-27</h1><ul>
+<li><a href="https://github.com/mochajs/mocha/issues/2080">#2080</a> - Fix broken RequireJS compatibility (<a href="https://github.com/boneskull">@boneskull</a>)</li>
+</ul>
+<h1>2.4.3 / 2016-01-27</h1><ul>
+<li><a href="https://github.com/mochajs/mocha/issues/2078">#2078</a> - Fix broken IE8 (<a href="https://github.com/boneskull">@boneskull</a>)</li>
+</ul>
+<h1>2.4.2 / 2016-01-26</h1><ul>
+<li><a href="https://github.com/mochajs/mocha/pull/2053">#2053</a> - Fix web worker compatibility (<a href="https://github.com/mislav">@mislav</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2072">#2072</a> - Fix Windows color output (<a href="https://github.com/thedark1337">@thedark1337</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2073">#2073</a> - Fix colors in <code>progress</code> and <code>landing</code> reporters (<a href="https://github.com/gyandeeps">@gyandeeps</a>)</li>
+</ul>
+<h1>2.4.1 / 2016-01-26</h1><ul>
+<li><a href="https://github.com/mochajs/mocha/pull/2067">#2067</a> - Fix HTML/doc reporter regressions (<a href="https://github.com/danielstjules">@danielstjules</a>)</li>
+</ul>
+<h1>2.4.0 / 2016-01-25</h1><ul>
+<li><a href="https://github.com/mochajs/mocha/pull/1945">#1945</a> - Correctly skip tests when skipping in suite&#39;s before() (<a href="https://github.com/ryanshawty">@ryanshawty</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2056">#2056</a> - chore(license): update license year to 2016 (<a href="https://github.com/pra85">@pra85</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2048">#2048</a> - Fix <code>this.skip</code> from spec with HTML reporter (<a href="https://github.com/mislav">@mislav</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2033">#2033</a> - Update tests for newer versions of should.js (<a href="https://github.com/tomhughes">@tomhughes</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2037">#2037</a> - Fix for memory leak caused by referenced to deferred test (<a href="https://github.com/bd82">@bd82</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2038">#2038</a> - Also run Travis-CI on node.js 4 &amp; 5 (<a href="https://github.com/bd82">@bd82</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2028">#2028</a> - Remove reference to test before afterAll hook runs (<a href="https://github.com/stonelgh">@stonelgh</a>)</li>
+<li>Bump mkdirp to 0.5.1 to support strict mode (<a href="https://github.com/danielstjules">@danielstjules</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/1977">#1977</a> - safely stringify PhantomJS undefined value (<a href="https://github.com/ahamid">@ahamid</a>)</li>
+<li>Add the ability to retry tests ([@@longlho])</li>
+<li><a href="https://github.com/mochajs/mocha/pull/1982">#1982</a> - Enable --log-timer-events option <a href="https://github.com/Alaneor">@Alaneor</a></li>
+<li>Fix #1980: Load mocha.opts from bin/mocha and bin/_mocha (<a href="https://github.com/danielstjules">@danielstjules</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/1976">#1976</a> - Simplify function call (<a href="https://github.com/iclanzan">@iclanzan</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/1963">#1963</a> - Add support --perf-basic-prof (<a href="https://github.com/robraux">@robraux</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/1981">#1981</a> - Fix HTML reporter handling of done and exceptions (<a href="https://github.com/Standard8">@Standard8</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/1993">#1993</a> - propagate &quot;file&quot; property for &quot;exports&quot; interface (<a href="https://github.com/segrey">@segrey</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/1999">#1999</a> - Add support for strict mode (<a href="https://github.com/tmont">@tmont</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2005">#2005</a> - XUnit Reporter Writes to stdout, falls back to console.log (<a href="https://github.com/jonnyreeves">@jonnyreeves</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/2021">#2021</a> - Fix non ES5 compliant regexp (<a href="https://github.com/zetaben">@zetaben</a>)</li>
+<li>[#1965] - Don&#39;t double install BDD UI (<a href="https://github.com/cowboyd">@cowboyd</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/1995">#1995</a> - Make sure the xunit output dir exists before writing to it (<a href="https://github.com/ianwremmel">@ianwremmel</a>)</li>
+<li>Use chalk for the base reporter colors; closes #1200 (<a href="https://github.com/boneskull">@boneskull</a>)</li>
+<li>Fix requiring custom interfaces (<a href="https://github.com/jgkim">@jgkim</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/pull/1967">#1967</a> Silence Bluebird js warnings (<a href="https://github.com/krisr">@krisr</a>)</li>
+</ul>
+<h1>2.3.4 / 2015-11-15</h1><ul>
+<li>Update debug dependency to 2.2.0</li>
+<li>remove duplication of mocha.opts on process.argv</li>
+<li>Fix typo in test/reporters/nyan.js</li>
+</ul>
+<h1>2.3.3 / 2015-09-19</h1><ul>
+<li><a href="https://github.com/mochajs/mocha/issues/1875">#1875</a> - Fix Markdown reporter exceeds maximum call stack size (<a href="https://github.com/danielstjules">@danielstjules</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1864">#1864</a> - Fix xunit missing output with --reporter-options output (<a href="https://github.com/danielstjules">@danielstjules</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1846">#1846</a> - Support all harmony flags (<a href="https://github.com/danielstjules">@danielstjules</a>)</li>
+<li>Fix fragile xunit reporter spec (<a href="https://github.com/danielstjules">@danielstjules</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1669">#1669</a> - Fix catch uncaught errors outside test suite execution (<a href="https://github.com/danielstjules">@danielstjules</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1868">#1868</a> - Revert jade to support npm &lt; v1.3.7 (<a href="https://github.com/danielstjules">@danielstjules</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1766">#1766</a> - Don&#39;t remove modules/components from stack trace in the browser (<a href="https://github.com/danielstjules">@danielstjules</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1798">#1798</a> - Fix correctly attribute mutiple done err with hooks (<a href="https://github.com/danielstjules">@danielstjules</a>)</li>
+<li>Fix use utils.reduce for IE8 compatibility (<a href="https://github.com/wsw0108">@wsw0108</a>)</li>
+<li>Some linting errors fixed by <a href="https://github.com/danielstjules">@danielstjules</a></li>
+<li>Call the inspect() function if message is not set (<a href="https://github.com/kevinburke">@kevinburke</a>)</li>
+</ul>
+<h1>2.3.2 / 2015-09-07</h1><ul>
+<li><a href="https://github.com/mochajs/mocha/issues/1868">#1868</a> - Fix compatibility with older versions of NPM (<a href="https://github.com/boneskull">@boneskull</a>)</li>
+</ul>
+<h1>2.3.1 / 2015-09-06</h1><ul>
+<li><a href="https://github.com/mochajs/mocha/issues/1812">#1812</a> - Fix: Bail flag causes before() hooks to be run even after a failure ([@aaroncrows])</li>
+</ul>
+<h1>2.3.0 / 2015-08-30</h1><ul>
+<li><a href="https://github.com/mochajs/mocha/issues/553">#553</a> - added --allowUncaught option (<a href="https://github.com/amsul">@amsul</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1490">#1490</a> - Allow --async-only to be satisfied by returning a promise (<a href="https://github.com/jlai">@jlai</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1829">#1829</a> - support --max-old-space-size (<a href="https://github.com/gigadude">@gigadude</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1811">#1811</a> - upgrade Jade dependency (<a href="https://github.com/outsideris">@outsideris</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1769">#1769</a> - Fix async hook error handling (<a href="https://github.com/ajaykodali">@ajaykodali</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1230">#1230</a> - More descriptive beforeEach/afterEach messages (<a href="https://github.com/duncanbeevers">@duncanbeevers</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1787">#1787</a> - Scope loading behaviour instead of using early return (<a href="https://github.com/aryeguy">@aryeguy</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1789">#1789</a> - Fix: html-runner crashing (<a href="https://github.com/sunesimonsen">@sunesimonsen</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1749">#1749</a> - Fix maximum call stack error on large amount of tests (<a href="https://github.com/tinganho">@tinganho</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1230">#1230</a> - Decorate failed hook titles with test title (<a href="https://github.com/duncanbeevers">@duncanbeevers</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1260">#1260</a> - Build using Browserify (<a href="https://github.com/ndhoule">@ndhoule</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1728">#1728</a> - Don&#39;t use <code>__proto__</code> (<a href="https://github.com/ndhoule">@ndhoule</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1781">#1781</a> - Fix hook error tests (<a href="https://github.com/glenjamin">@glenjamin</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1754">#1754</a> - Allow boolean --reporter-options (<a href="https://github.com/papandreou">@papandreou</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1766">#1766</a> - Fix overly aggressive stack suppression (<a href="https://github.com/moll">@moll</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1752">#1752</a> - Avoid potential infinite loop (<a href="https://github.com/gsilk">@gsilk</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1761">#1761</a> - Fix problems running under PhantomJS (<a href="https://github.com/chromakode">@chromakode</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1700">#1700</a> - Fix more problems running under PhantomJS (<a href="https://github.com/jbnicolai">@jbnicolai</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1774">#1774</a> - Support escaped spaces in CLI options (<a href="https://github.com/adamgruber">@adamgruber</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1687">#1687</a> - Fix HTML reporter links with special chars (<a href="https://github.com/benvinegar">@benvinegar</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1359">#1359</a> - Adopt code style and enforce it using ESLint (<a href="https://github.com/ndhoule">@ndhoule</a> w/ assist from <a href="https://github.com/jbnicolai">@jbnicolai</a> &amp; <a href="https://github.com/boneskull">@boneskull</a>)</li>
+<li>various refactors (<a href="https://github.com/jbnicolai">@jbnicolai</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1758">#1758</a> - Add cross-frame compatible Error checking (<a href="https://github.com/outdooricon">@outdooricon</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1741">#1741</a> - Remove moot <code>version</code> property from bower.json (<a href="https://github.com/kkirsche">@kkirsche</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1739">#1739</a> - Improve <code>HISTORY.md</code> (<a href="https://github.com/rstacruz">@rstacruz</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1730">#1730</a> - Support more io.js flags (<a href="https://github.com/ryedog">@ryedog</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1349">#1349</a> - Allow HTML in HTML reporter errors (<a href="https://github.com/papandreou">@papandreou</a> / <a href="https://github.com/sunesimonsen">@sunesimonsen</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1572">#1572</a> - Prevent default browser behavior for failure/pass links (<a href="https://github.com/jschilli">@jschilli</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1630">#1630</a> - Support underscored harmony flags (<a href="https://github.com/dominicbarnes">@dominicbarnes</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1718">#1718</a> - Support more harmony flags (<a href="https://github.com/slyg">@slyg</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1689">#1689</a> - Add stack to JSON-stream reporter (<a href="https://github.com/jonathandelgado">@jonathandelgado</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1654">#1654</a> - Fix <code>ReferenceError</code> &quot;location is not defined&quot; (<a href="https://github.com/jakemmarsh">@jakemmarsh</a>)</li>
+</ul>
+<h1>2.2.5 / 2015-05-14</h1><ul>
+<li><a href="https://github.com/mochajs/mocha/issues/1699">#1699</a> - Upgrade jsdiff to v1.4.0 (<a href="https://github.com/nylen">@nylen</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1648">#1648</a> - fix diff background colors in the console (<a href="https://github.com/nylen">@nylen</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1327">#1327</a> - fix tests running twice, a regression issue. (<a href="https://github.com/mochajs/mocha/issues/1686">#1686</a>, <a href="https://github.com/danielstjules">@danielstjules</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1675">#1675</a> - add integration tests (<a href="https://github.com/danielstjules">@danielstjules</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1682">#1682</a> - use a valid SPDX license identifier in package.json (<a href="https://github.com/kemitchell">@kemitchell</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1660">#1660</a> - fix assertion of invalid dates (<a href="https://github.com/mochajs/mocha/issues/1661">#1661</a>, <a href="https://github.com/a8m">@a8m</a>)</li>
+<li><a href="https://github.com/mochajs/mocha/issues/1241">#1241</a> - fix issue with multiline diffs appearing as single line (<a href="https://github.com/mochajs/mocha/issues/1655">#1655</a>, <a href="https://github.com/a8m">@a8m</a>)</li>
+</ul>
+<h1>2.2.4 / 2015-04-08</h1><ul>
+<li>Load mocha.opts in _mocha for now (close #1645)</li>
+</ul>
+<h1>2.2.3 / 2015-04-07</h1><ul>
+<li>fix(reporter/base): string diff - issue #1241</li>
+<li>fix(reporter/base): string diff - issue #1241</li>
+<li>fix(reporter/base): don&#39;t show diffs for errors without expectation</li>
+<li>fix(reporter/base): don&#39;t assume error message is first line of stack</li>
+<li>improve: dry up reporter/base test</li>
+<li>fix(reporter/base): explicitly ignore showDiff #1614</li>
+<li>Add iojs to travis build</li>
+<li>Pass <code>--allow-natives-syntax</code> flag to node.</li>
+<li>Support --harmony_classes flag for io.js</li>
+<li>Fix 1556: Update utils.clean to handle newlines in func declarations</li>
+<li>Fix 1606: fix err handling in IE &lt;= 8 and non-ES5 browsers</li>
+<li>Fix 1585: make _mocha executable again</li>
+<li>chore(package.json): add a8m as a contributor</li>
+<li>Fixed broken link on html-cov reporter</li>
+<li>support --es_staging flag</li>
+<li>fix issue where menu overlaps content.</li>
+<li>update contributors in package.json</li>
+<li>Remove trailing whitespace from reporter output</li>
+<li>Remove contributors list from readme</li>
+<li>log third-party reporter errors</li>
+<li>[Fix] Exclude not own properties when looping on options</li>
+<li>fix: support node args in mocha.opts (close #1573)</li>
+<li>fix(reporter/base): string diff - issue #1241</li>
+</ul>
+<h1>2.2.1 / 2015-03-09</h1><ul>
+<li>Fix passing of args intended for node/iojs.</li>
+</ul>
+<h1>2.2.0 / 2015-03-06</h1><ul>
+<li>Update mocha.js</li>
+<li>Add --fgrep. Use grep for RegExp, fgrep for str</li>
+<li>Ignore async global errors after spec resolution</li>
+<li>Fixing errors that prevent mocha.js from loading in the browser - fixes #1558</li>
+<li>fix(utils): issue #1558 + make</li>
+<li>add ability to delay root suite; closes #362, closes #1124</li>
+<li>fix insanity in http tests</li>
+<li>update travis: add node 0.12, add gitter, remove slack</li>
+<li>building</li>
+<li>resolve #1548: ensure the environment&#39;s &quot;node&quot; executable is used</li>
+<li>reporters/base: use supports-color to detect colorable term</li>
+<li>travis: use docker containers</li>
+<li>small fix: commander option for --expose-gc</li>
+<li>Ignore asynchronous errors after global failure</li>
+<li>Improve error output when a test fails with a non-error</li>
+<li>updated travis badge, uses svg instead of img</li>
+<li>Allow skip from test context for #332</li>
+<li>[JSHINT] Unnecessary semicolon fixed in bin/_mocha</li>
+<li>Added a reminder about the done() callback to test timeout error messages</li>
+<li>fixes #1496, in Mocha.run(fn), check if fn exists before executing it, added tests too</li>
+<li>Add Harmony Proxy flag for iojs</li>
+<li>test(utils|ms|*): test existing units</li>
+<li>add support for some iojs flags</li>
+<li>fix(utils.stringify): issue #1229, diff viewer</li>
+<li>Remove slack link</li>
+<li>Prevent multiple &#39;grep=&#39; querystring params in html reporter</li>
+<li>Use grep as regexp (close #1381)</li>
+<li>utils.stringify should handle objects without an Object prototype</li>
+<li>in runnable test, comparing to undefined error&#39;s message rather than a literal</li>
+<li>Fix test running output truncation on async STDIO</li>
+<li>ammended for deprecated customFds option in child_process</li>
+</ul>
+<h1>2.1.0 / 2014-12-23</h1><ul>
+<li>showDiff: don’t stringify strings</li>
+<li>Clean up unused module dependencies.</li>
+<li>Filter zero-length strings from mocha.opts</li>
+<li>only write to stdout in reporters</li>
+<li>Revert &quot;only write to stdout in reporters&quot;</li>
+<li>Print colored output only to a tty</li>
+<li>update summary in README.md</li>
+<li>rename Readme.md/History.md to README.md/HISTORY.md because neurotic</li>
+<li>add .mailmap to fix &quot;git shortlog&quot; or &quot;git summary&quot; output</li>
+<li>fixes #1461: nyan-reporter now respects Base.useColors, fixed bug where Base.color would not return a string when str wasn&#39;t a string.</li>
+<li>Use existing test URL builder in failed replay links</li>
+<li>modify .travis.yml: use travis_retry; closes #1449</li>
+<li>fix -t 0 behavior; closes #1446</li>
+<li>fix tests (whoops)</li>
+<li>improve diff behavior</li>
+<li>Preserve pathname when linking to individual tests</li>
+<li>Fix test</li>
+<li>Tiny typo in comments fixed</li>
+<li>after hooks now being called on failed tests when using bail, fixes #1093</li>
+<li>fix throwing undefined/null now makes tests fail, fixes #1395</li>
+<li>compiler extensions are added as watched extensions, removed non-standard extensions from watch regex, resolves #1221</li>
+<li>prefix/namespace for suite titles in markdown reporter, fixes #554</li>
+<li>fix more bad markdown in CONTRIBUTING.md</li>
+<li>fix bad markdown in CONTRIBUTING.md</li>
+<li>add setImmediate/clearImmediate to globals; closes #1435</li>
+<li>Fix buffer diffs (closes #1132, closes #1433)</li>
+<li>add a CONTRIBUTING.md.  closes #882</li>
+<li>fix intermittent build failures (maybe). closes #1407</li>
+<li>add Slack notification to .travis.yml</li>
+<li>Fix slack link</li>
+<li>Add slack room to readme</li>
+<li>Update maintainers</li>
+<li>update maintainers and contributors</li>
+<li>resolves #1393: kill children with more effort on SIGINT</li>
+<li>xunit reporter support for optionally writing to a file</li>
+<li>if a reporter has a .done method, call it before exiting</li>
+<li>add support for reporter options</li>
+<li>only write to stdout in reporters</li>
+</ul>
+<h1>2.0.0 / 2014-10-21</h1><ul>
+<li>remove: support for node 0.6.x, 0.4.x</li>
+<li>fix: landing reporter with non ansi characters (#211)</li>
+<li>fix: html reporter - preserve query params when navigating to suites/tests (#1358)</li>
+<li>fix: json stream reporter add error message to failed test</li>
+<li>fix: fixes for visionmedia -&gt; mochajs</li>
+<li>fix: use stdio, fixes node deprecation warnings (#1391)</li>
+</ul>
+<h1>1.21.5 / 2014-10-11</h1><ul>
+<li>fix: build for NodeJS v0.6.x</li>
+<li>fix: do not attempt to highlight syntax when non-HTML reporter is used</li>
+<li>update: escape-string-regexp to 1.0.2.</li>
+<li>fix: botched indentation in canonicalize()</li>
+<li>fix: .gitignore: ignore .patch and .diff files</li>
+<li>fix: changed &#39;Catched&#39; to &#39;Caught&#39; in uncaught exception error handler messages</li>
+<li>add: <code>pending</code> field for json reporter</li>
+<li>fix: Runner.prototype.uncaught: don&#39;t double-end runnables that already have a state.</li>
+<li>fix: --recursive, broken by f0facd2e</li>
+<li>update: replaces escapeRegexp with the escape-string-regexp package.</li>
+<li>update: commander to 2.3.0.</li>
+<li>update: diff to 1.0.8.</li>
+<li>fix: ability to disable syntax highlighting (#1329)</li>
+<li>fix: added empty object to errorJSON() call to catch when no error is present</li>
+<li>fix: never time out after calling enableTimeouts(false)</li>
+<li>fix: timeout(0) will work at suite level (#1300)</li>
+<li>Fix for --watch+only() issue (#888 )</li>
+<li>fix: respect err.showDiff, add Base reporter test (#810)</li>
+</ul>
+<h1>1.22.1-3 / 2014-07-27</h1><ul>
+<li>fix: disabling timeouts with this.timeout(0) (#1301)</li>
+</ul>
+<h1>1.22.1-3 / 2014-07-27</h1><ul>
+<li>fix: local uis and reporters (#1288)</li>
+<li>fix: building 1.21.0&#39;s changes in the browser (#1284)</li>
+</ul>
+<h1>1.21.0 / 2014-07-23</h1><ul>
+<li>add: --no-timeouts option (#1262, #1268)</li>
+<li>add: --*- deprecation node flags (#1217)</li>
+<li>add: --watch-extensions argument (#1247)</li>
+<li>change: spec reporter is default (#1228)</li>
+<li>fix: diff output showing incorrect +/- (#1182)</li>
+<li>fix: diffs of circular structures (#1179)</li>
+<li>fix: re-render the progress bar when progress has changed only (#1151)</li>
+<li>fix support for environments with global and window (#1159)</li>
+<li>fix: reverting to previously defined onerror handler (#1178)</li>
+<li>fix: stringify non error objects passed to done() (#1270)</li>
+<li>fix: using local ui, reporters (#1267)</li>
+<li>fix: cleaning es6 arrows (#1176)</li>
+<li>fix: don&#39;t include attrs in failure tag for xunit (#1244)</li>
+<li>fix: fail tests that return a promise if promise is rejected w/o a reason (#1224)</li>
+<li>fix: showing failed tests in doc reporter (#1117)</li>
+<li>fix: dot reporter dots being off (#1204)</li>
+<li>fix: catch empty throws (#1219)</li>
+<li>fix: honoring timeout for sync operations (#1242)</li>
+<li>update: growl to 1.8.0</li>
+</ul>
+<h1>1.20.1 / 2014-06-03</h1><ul>
+<li>update: should dev dependency to ~4.0.0 (#1231)</li>
+</ul>
+<h1>1.20.0 / 2014-05-28</h1><ul>
+<li>add: filenames to suite objects (#1222)</li>
+</ul>
+<h1>1.19.0 / 2014-05-17</h1><ul>
+<li>add: browser script option to package.json</li>
+<li>add: export file in Mocha.Test objects (#1174)</li>
+<li>add: add docs for wrapped node flags</li>
+<li>fix: mocha.run() to return error status in browser (#1216)</li>
+<li>fix: clean() to show failure details (#1205)</li>
+<li>fix: regex that generates html for new keyword (#1201)</li>
+<li>fix: sibling suites have inherited but separate contexts (#1164)</li>
+</ul>
+<h1>1.18.2 / 2014-03-18</h1><ul>
+<li>fix: html runner was prevented from using #mocha as the default root el (#1162)</li>
+</ul>
+<h1>1.18.1 / 2014-03-18</h1><ul>
+<li>fix: named before/after hooks in bdd, tdd, qunit interfaces (#1161)</li>
+</ul>
+<h1>1.18.0 / 2014-03-13</h1><ul>
+<li>add: promise support (#329)</li>
+<li>add: named before/after hooks (#966)</li>
+</ul>
+<h1>1.17.1 / 2014-01-22</h1><ul>
+<li>fix: expected messages in should.js (should.js#168)</li>
+<li>fix: expect errno global in node versions &lt; v0.9.11 (#1111)</li>
+<li>fix: unreliable checkGlobals optimization (#1110)</li>
+</ul>
+<h1>1.17.0 / 2014-01-09</h1><ul>
+<li>add: able to require globals (describe, it, etc.) through mocha (#1077)</li>
+<li>fix: abort previous run on --watch change (#1100)</li>
+<li>fix: reset context for each --watch triggered run (#1099)</li>
+<li>fix: error when cli can&#39;t resolve path or pattern (#799)</li>
+<li>fix: canonicalize objects before stringifying and diffing them (#1079)</li>
+<li>fix: make CR call behave like carriage return for non tty (#1087)</li>
+</ul>
+<h1>1.16.2 / 2013-12-23</h1><ul>
+<li>fix: couple issues with ie 8 (#1082, #1081)</li>
+<li>fix: issue running the xunit reporter in browsers (#1068)</li>
+<li>fix: issue with firefox &lt; 3.5 (#725)</li>
+</ul>
+<h1>1.16.1 / 2013-12-19</h1><ul>
+<li>fix: recompiled for missed changes from the last release</li>
+</ul>
+<h1>1.16.0 / 2013-12-19</h1><ul>
+<li>add: Runnable.globals(arr) for per test global whitelist (#1046)</li>
+<li>add: mocha.throwError(err) for assertion libs to call (#985)</li>
+<li>remove: --watch&#39;s spinner (#806)</li>
+<li>fix: duplicate test output for multi-line specs in spec reporter (#1006)</li>
+<li>fix: gracefully exit on SIGINT (#1063)</li>
+<li>fix expose the specified ui only in the browser (#984)</li>
+<li>fix: ensure process exit code is preserved when using --no-exit (#1059)</li>
+<li>fix: return true from window.onerror handler (#868)</li>
+<li>fix: xunit reporter to use process.stdout.write (#1068)</li>
+<li>fix: utils.clean(str) indentation (#761)</li>
+<li>fix: xunit reporter returning test duration a NaN (#1039)</li>
+</ul>
+<h1>1.15.1 / 2013-12-03</h1><ul>
+<li>fix: recompiled for missed changes from the last release</li>
+</ul>
+<h1>1.15.0 / 2013-12-02</h1><ul>
+<li>add: <code>--no-exit</code> to prevent <code>process.exit()</code> (#1018)</li>
+<li>fix: using inline diffs (#1044)</li>
+<li>fix: show pending test details in xunit reporter (#1051)</li>
+<li>fix: faster global leak detection (#1024)</li>
+<li>fix: yui compression (#1035)</li>
+<li>fix: wrapping long lines in test results (#1030, #1031)</li>
+<li>fix: handle errors in hooks (#1043)</li>
+</ul>
+<h1>1.14.0 / 2013-11-02</h1><ul>
+<li>add: unified diff (#862)</li>
+<li>add: set MOCHA_COLORS env var to use colors (#965)</li>
+<li>add: able to override tests links in html reporters (#776)</li>
+<li>remove: teamcity reporter (#954)</li>
+<li>update: commander dependency to 2.0.0 (#1010)</li>
+<li>fix: mocha --ui will try to require the ui if not built in, as --reporter does (#1022)</li>
+<li>fix: send cursor commands only if isatty (#184, #1003)</li>
+<li>fix: include assertion message in base reporter (#993, #991)</li>
+<li>fix: consistent return of it, it.only, and describe, describe.only (#840)</li>
+</ul>
+<h1>1.13.0 / 2013-09-15</h1><ul>
+<li>add: sort test files with --sort (#813)</li>
+<li>update: diff depedency to 1.0.7</li>
+<li>update: glob dependency to 3.2.3 (#927)</li>
+<li>fix: diffs show whitespace differences (#976)</li>
+<li>fix: improve global leaks (#783)</li>
+<li>fix: firefox window.getInterface leak</li>
+<li>fix: accessing iframe via window[iframeIndex] leak</li>
+<li>fix: faster global leak checking</li>
+<li>fix: reporter pending css selector (#970)</li>
+</ul>
+<h1>1.12.1 / 2013-08-29</h1><ul>
+<li>remove test.js from .gitignore</li>
+<li>update included version of ms.js</li>
+</ul>
+<h1>1.12.0 / 2013-07-01</h1><ul>
+<li>add: prevent diffs for differing types. Closes #900</li>
+<li>add <code>Mocha.process</code> hack for phantomjs</li>
+<li>fix: use compilers with requires</li>
+<li>fix regexps in diffs. Closes #890</li>
+<li>fix xunit NaN on failure. Closes #894</li>
+<li>fix: strip tab indentation in <code>clean</code> utility method</li>
+<li>fix: textmate bundle installation</li>
+</ul>
+<h1>1.11.0 / 2013-06-12</h1><ul>
+<li>add --prof support</li>
+<li>add --harmony support</li>
+<li>add --harmony-generators support</li>
+<li>add &quot;Uncaught &quot; prefix to uncaught exceptions</li>
+<li>add web workers support</li>
+<li>add <code>suite.skip()</code></li>
+<li>change to output # of pending / passing even on failures. Closes #872</li>
+<li>fix: prevent hooks from being called if we are bailing</li>
+<li>fix <code>this.timeout(0)</code></li>
+</ul>
+<h1>1.10.0 / 2013-05-21</h1><ul>
+<li>add add better globbing support for windows via <code>glob</code> module</li>
+<li>add support to pass through flags such as --debug-brk=1234. Closes #852</li>
+<li>add test.only, test.skip to qunit interface</li>
+<li>change to always use word-based diffs for now. Closes #733</li>
+<li>change <code>mocha init</code> tests.html to index.html</li>
+<li>fix <code>process</code> global leak in the browser</li>
+<li>fix: use resolve() instead of join() for --require</li>
+<li>fix: filterLeaks() condition to not consider indices in global object as leaks</li>
+<li>fix: restrict mocha.css styling to #mocha id</li>
+<li>fix: save timer references to avoid Sinon interfering in the browser build.</li>
+</ul>
+<h1>1.9.0 / 2013-04-03</h1><ul>
+<li>add improved setImmediate implementation</li>
+<li>replace --ignore-leaks with --check-leaks</li>
+<li>change default of ignoreLeaks to true. Closes #791</li>
+<li>remove scrolling for HTML reporter</li>
+<li>fix retina support</li>
+<li>fix tmbundle, restrict to js scope</li>
+</ul>
+<h1>1.8.2 / 2013-03-11</h1><ul>
+<li>add <code>setImmediate</code> support for 0.10.x</li>
+<li>fix mocha -w spinner on windows</li>
+</ul>
+<h1>1.8.1 / 2013-01-09</h1><ul>
+<li>fix .bail() arity check causing it to default to true</li>
+</ul>
+<h1>1.8.0 / 2013-01-08</h1><ul>
+<li>add Mocha() options bail support</li>
+<li>add <code>Mocha#bail()</code> method</li>
+<li>add instanceof check back for inheriting from Error</li>
+<li>add component.json</li>
+<li>add diff.js to browser build</li>
+<li>update growl</li>
+<li>fix TAP reporter failures comment :D</li>
+</ul>
+<h1>1.7.4 / 2012-12-06</h1><ul>
+<li>add total number of passes and failures to TAP</li>
+<li>remove .bind() calls. re #680</li>
+<li>fix indexOf. Closes #680</li>
+</ul>
+<h1>1.7.3 / 2012-11-30</h1><ul>
+<li>fix uncaught error support for the browser</li>
+<li>revert uncaught &quot;fix&quot; which breaks node</li>
+</ul>
+<h1>1.7.2 / 2012-11-28</h1><ul>
+<li>fix uncaught errors to expose the original error message</li>
+</ul>
+<h1>1.7.0 / 2012-11-07</h1><ul>
+<li>add <code>--async-only</code> support to prevent false positives for missing <code>done()</code></li>
+<li>add sorting by filename in code coverage</li>
+<li>add HTML 5 doctype to browser template.</li>
+<li>add play button to html reporter to rerun a single test</li>
+<li>add <code>this.timeout(ms)</code> as Suite#timeout(ms). Closes #599</li>
+<li>update growl dependency to 1.6.x</li>
+<li>fix encoding of test-case ?grep. Closes #637</li>
+<li>fix unicode chars on windows</li>
+<li>fix dom globals in Opera/IE. Closes #243</li>
+<li>fix markdown reporter a tags</li>
+<li>fix <code>this.timeout(&quot;5s&quot;)</code> support</li>
+</ul>
+<h1>1.6.0 / 2012-10-02</h1><ul>
+<li>add object diffs when <code>err.showDiff</code> is present</li>
+<li>add hiding of empty suites when pass/failures are toggled</li>
+<li>add faster <code>.length</code> checks to <code>checkGlobals()</code> before performing the filter</li>
+</ul>
+<h1>1.5.0 / 2012-09-21</h1><ul>
+<li>add <code>ms()</code> to <code>.slow()</code> and <code>.timeout()</code></li>
+<li>add <code>Mocha#checkLeaks()</code> to re-enable global leak checks</li>
+<li>add <code>this.slow()</code> option [aheckmann]</li>
+<li>add tab, CR, LF to error diffs for now</li>
+<li>add faster <code>.checkGlobals()</code> solution [guille]</li>
+<li>remove <code>fn.call()</code> from reduce util</li>
+<li>remove <code>fn.call()</code> from filter util</li>
+<li>fix forEach. Closes #582</li>
+<li>fix relaying of signals [TooTallNate]</li>
+<li>fix TAP reporter grep number</li>
+</ul>
+<h1>1.4.2 / 2012-09-01</h1><ul>
+<li>add support to multiple <code>Mocha#globals()</code> calls, and strings</li>
+<li>add <code>mocha.reporter()</code> constructor support [jfirebaugh]</li>
+<li>add <code>mocha.timeout()</code></li>
+<li>move query-string parser to utils.js</li>
+<li>move highlight code to utils.js</li>
+<li>fix third-party reporter support [exogen]</li>
+<li>fix client-side API to match node-side [jfirebaugh]</li>
+<li>fix mocha in iframe [joliss]</li>
+</ul>
+<h1>1.4.1 / 2012-08-28</h1><ul>
+<li>add missing <code>Markdown</code> export</li>
+<li>fix <code>Mocha#grep()</code>, escape regexp strings</li>
+<li>fix reference error when <code>devicePixelRatio</code> is not defined. Closes #549</li>
+</ul>
+<h1>1.4.0 / 2012-08-22</h1><ul>
+<li>add mkdir -p to <code>mocha init</code>. Closes #539</li>
+<li>add <code>.only()</code>. Closes #524</li>
+<li>add <code>.skip()</code>. Closes #524</li>
+<li>change str.trim() to use utils.trim(). Closes #533</li>
+<li>fix HTML progress indicator retina display</li>
+<li>fix url-encoding of click-to-grep HTML functionality</li>
+</ul>
+<h1>1.3.2 / 2012-08-01</h1><ul>
+<li>fix exports double-execution regression. Closes #531</li>
+</ul>
+<h1>1.3.1 / 2012-08-01</h1><ul>
+<li>add passes/failures toggling to HTML reporter</li>
+<li>add pending state to <code>xit()</code> and <code>xdescribe()</code> [Brian Moore]</li>
+<li>add the @charset &quot;UTF-8&quot;; to fix #522 with FireFox. [Jonathan Creamer]</li>
+<li>add border-bottom to #stats links</li>
+<li>add check for runnable in <code>Runner#uncaught()</code>. Closes #494</li>
+<li>add 0.4 and 0.6 back to travis.yml</li>
+<li>add <code>-E, --growl-errors</code> to growl on failures only</li>
+<li>add prefixes to debug() names. Closes #497</li>
+<li>add <code>Mocha#invert()</code> to js api</li>
+<li>change dot reporter to use sexy unicode dots</li>
+<li>fix error when clicking pending test in HTML reporter</li>
+<li>fix <code>make tm</code></li>
+</ul>
+<h1>1.3.0 / 2012-07-05</h1><ul>
+<li>add window scrolling to <code>HTML</code> reporter</li>
+<li>add v8 <code>--trace-*</code> option support</li>
+<li>add support for custom reports via <code>--reporter MODULE</code></li>
+<li>add <code>--invert</code> switch to invert <code>--grep</code> matches</li>
+<li>fix export of <code>Nyan</code> reporter. Closes #495</li>
+<li>fix escaping of <code>HTML</code> suite titles. Closes #486</li>
+<li>fix <code>done()</code> called multiple times with an error test</li>
+<li>change <code>--grep</code> - regexp escape the input</li>
+</ul>
+<h1>1.2.2 / 2012-06-28</h1><ul>
+<li>Added 0.8.0 support</li>
+</ul>
+<h1>1.2.1 / 2012-06-25</h1><ul>
+<li>Added <code>this.test.error(err)</code> support to after each hooks. Closes #287</li>
+<li>Added: export top-level suite on global mocha object (mocha.suite). Closes #448</li>
+<li>Fixed <code>js</code> code block format error in markdown reporter</li>
+<li>Fixed deprecation warning when using <code>path.existsSync</code></li>
+<li>Fixed --globals with wildcard</li>
+<li>Fixed chars in nyan when his head moves back</li>
+<li>Remove <code>--growl</code> from test/mocha.opts. Closes #289</li>
+</ul>
+<h1>1.2.0 / 2012-06-17</h1><ul>
+<li>Added <code>nyan</code> reporter [Atsuya Takagi]</li>
+<li>Added <code>mocha init &lt;path&gt;</code> to copy client files</li>
+<li>Added &quot;specify&quot; synonym for &quot;it&quot; [domenic]</li>
+<li>Added global leak wildcard support [nathanbowser]</li>
+<li>Fixed runner emitter leak. closes #432</li>
+<li>Fixed omission of .js extension. Closes #454</li>
+</ul>
+<h1>1.1.0 / 2012-05-30</h1><ul>
+<li>Added: check each <code>mocha(1)</code> arg for directories to walk</li>
+<li>Added <code>--recursive</code> [tricknotes]</li>
+<li>Added <code>context</code> for BDD [hokaccha]</li>
+<li>Added styling for new clickable titles</li>
+<li>Added clickable suite titles to HTML reporter</li>
+<li>Added warning when strings are thrown as errors</li>
+<li>Changed: green arrows again in HTML reporter styling</li>
+<li>Changed ul/li elements instead of divs for better copy-and-pasting [joliss]</li>
+<li>Fixed issue #325 - add better grep support to js api</li>
+<li>Fixed: save timer references to avoid Sinon interfering.</li>
+</ul>
+<h1>1.0.3 / 2012-04-30</h1><ul>
+<li>Fixed string diff newlines</li>
+<li>Fixed: removed mocha.css target. Closes #401</li>
+</ul>
+<h1>1.0.2 / 2012-04-25</h1><ul>
+<li>Added HTML reporter duration. Closes #47</li>
+<li>Fixed: one postMessage event listener [exogen]</li>
+<li>Fixed: allow --globals to be used multiple times. Closes #100 [brendannee]</li>
+<li>Fixed #158: removes jquery include from browser tests</li>
+<li>Fixed grep. Closes #372 [brendannee]</li>
+<li>Fixed #166 - When grepping don&#39;t display the empty suites</li>
+<li>Removed test/browser/style.css. Closes #385</li>
+</ul>
+<h1>1.0.1 / 2012-04-04</h1><ul>
+<li>Fixed <code>.timeout()</code> in hooks</li>
+<li>Fixed: allow callback for <code>mocha.run()</code> in client version</li>
+<li>Fixed browser hook error display. Closes #361</li>
+</ul>
+<h1>1.0.0 / 2012-03-24</h1><ul>
+<li>Added js API. Closes #265</li>
+<li>Added: initial run of tests with <code>--watch</code>. Closes #345</li>
+<li>Added: mark <code>location</code> as a global on the CS. Closes #311</li>
+<li>Added <code>markdown</code> reporter (github flavour)</li>
+<li>Added: scrolling menu to coverage.html. Closes #335</li>
+<li>Added source line to html report for Safari [Tyson Tate]</li>
+<li>Added &quot;min&quot; reporter, useful for <code>--watch</code> [Jakub Nešetřil]</li>
+<li>Added support for arbitrary compilers via . Closes #338 [Ian Young]</li>
+<li>Added Teamcity export to lib/reporters/index [Michael Riley]</li>
+<li>Fixed chopping of first char in error reporting. Closes #334 [reported by topfunky]</li>
+<li>Fixed terrible FF / Opera stack traces</li>
+</ul>
+<h1>0.14.1 / 2012-03-06</h1><ul>
+<li>Added lib-cov to <em>.npmignore</em></li>
+<li>Added reporter to <code>mocha.run([reporter])</code> as argument</li>
+<li>Added some margin-top to the HTML reporter</li>
+<li>Removed jQuery dependency</li>
+<li>Fixed <code>--watch</code>: purge require cache. Closes #266</li>
+</ul>
+<h1>0.14.0 / 2012-03-01</h1><ul>
+<li>Added string diff support for terminal reporters</li>
+</ul>
+<h1>0.13.0 / 2012-02-23</h1><ul>
+<li>Added preliminary test coverage support. Closes #5</li>
+<li>Added <code>HTMLCov</code> reporter</li>
+<li>Added <code>JSONCov</code> reporter [kunklejr]</li>
+<li>Added <code>xdescribe()</code> and <code>xit()</code> to the BDD interface. Closes #263 (docs   * Changed: make json reporter output pretty json</li>
+<li>Fixed node-inspector support, swapped <code>--debug</code> for <code>debug</code> to match node.
+needed)
+Closes #247</li>
+</ul>
+<h1>0.12.1 / 2012-02-14</h1><ul>
+<li>Added <code>npm docs mocha</code> support [TooTallNate]</li>
+<li>Added a <code>Context</code> object used for hook and test-case this. Closes #253</li>
+<li>Fixed <code>Suite#clone()</code> <code>.ctx</code> reference. Closes #262</li>
+</ul>
+<h1>0.12.0 / 2012-02-02</h1><ul>
+<li>Added .coffee <code>--watch</code> support. Closes #242</li>
+<li>Added support to <code>--require</code> files relative to the CWD. Closes #241</li>
+<li>Added quick n dirty syntax highlighting. Closes #248</li>
+<li>Changed: made HTML progress indicator smaller</li>
+<li>Fixed xunit errors attribute [dhendo]</li>
+</ul>
+<h1>0.10.2 / 2012-01-21</h1><ul>
+<li>Fixed suite count in reporter stats. Closes #222</li>
+<li>Fixed <code>done()</code> after timeout error reporting [Phil Sung]</li>
+<li>Changed the 0-based errors to 1</li>
+</ul>
+<h1>0.10.1 / 2012-01-17</h1><ul>
+<li>Added support for node 0.7.x</li>
+<li>Fixed absolute path support. Closes #215 [kompiro]</li>
+<li>Fixed <code>--no-colors</code> option [Jussi Virtanen]</li>
+<li>Fixed Arial CSS typo in the correct file</li>
+</ul>
+<h1>0.10.0 / 2012-01-13</h1><ul>
+<li>Added <code>-b, --bail</code> to exit on first exception [guillermo]</li>
+<li>Added support for <code>-gc</code> / <code>--expose-gc</code> [TooTallNate]</li>
+<li>Added <code>qunit</code>-inspired interface</li>
+<li>Added MIT LICENSE. Closes #194</li>
+<li>Added: <code>--watch</code> all .js in the CWD. Closes #139</li>
+<li>Fixed <code>self.test</code> reference in runner. Closes #189</li>
+<li>Fixed double reporting of uncaught exceptions after timeout. Closes #195</li>
+</ul>
+<h1>0.8.2 / 2012-01-05</h1><ul>
+<li>Added test-case context support. Closes #113</li>
+<li>Fixed exit status. Closes #187</li>
+<li>Update commander. Closes #190</li>
+</ul>
+<h1>0.8.1 / 2011-12-30</h1><ul>
+<li>Fixed reporting of uncaught exceptions. Closes #183</li>
+<li>Fixed error message defaulting [indutny]</li>
+<li>Changed mocha(1) from bash to node for windows [Nathan Rajlich]</li>
+</ul>
+<h1>0.8.0 / 2011-12-28</h1><ul>
+<li>Added <code>XUnit</code> reporter [FeeFighters/visionmedia]</li>
+<li>Added <code>say(1)</code> notification support [Maciej Małecki]</li>
+<li>Changed: fail when done() is invoked with a non-Error. Closes #171</li>
+<li>Fixed <code>err.stack</code>, defaulting to message. Closes #180</li>
+<li>Fixed: <code>make tm</code> mkdir -p the dest. Closes #137</li>
+<li>Fixed mocha(1) --help bin name</li>
+<li>Fixed <code>-d</code> for <code>--debug</code> support</li>
+</ul>
+<h1>0.7.1 / 2011-12-22</h1><ul>
+<li>Removed <code>mocha-debug(1)</code>, use <code>mocha --debug</code></li>
+<li>Fixed CWD relative requires</li>
+<li>Fixed growl issue on windows [Raynos]</li>
+<li>Fixed: platform specific line endings [TooTallNate]</li>
+<li>Fixed: escape strings in HTML reporter. Closes #164</li>
+</ul>
+<h1>0.7.0 / 2011-12-18</h1><ul>
+<li>Added support for IE{7,8} [guille]</li>
+<li>Changed: better browser nextTick implementation [guille]</li>
+</ul>
+<h1>0.6.0 / 2011-12-18</h1><ul>
+<li>Added setZeroTimeout timeout for browser (nicer stack traces). Closes #153</li>
+<li>Added &quot;view source&quot; on hover for HTML reporter to make it obvious</li>
+<li>Changed: replace custom growl with growl lib</li>
+<li>Fixed duplicate reporting for HTML reporter. Closes #154</li>
+<li>Fixed silent hook errors in the HTML reporter. Closes #150</li>
+</ul>
+<h1>0.5.0 / 2011-12-14</h1><ul>
+<li>Added: push node_modules directory onto module.paths for relative require Closes #93</li>
+<li>Added teamcity reporter [blindsey]</li>
+<li>Fixed: recover from uncaught exceptions for tests. Closes #94</li>
+<li>Fixed: only emit &quot;test end&quot; for uncaught within test, not hook</li>
+</ul>
+<h1>0.4.0 / 2011-12-14</h1><ul>
+<li>Added support for test-specific timeouts via <code>this.timeout(0)</code>. Closes #134</li>
+<li>Added guillermo&#39;s client-side EventEmitter. Closes #132</li>
+<li>Added progress indicator to the HTML reporter</li>
+<li>Fixed slow browser tests. Closes #135</li>
+<li>Fixed &quot;suite&quot; color for light terminals</li>
+<li>Fixed <code>require()</code> leak spotted by [guillermo]</li>
+</ul>
+<h1>0.3.6 / 2011-12-09</h1><ul>
+<li>Removed suite merging (for now)</li>
+</ul>
+<h1>0.3.5 / 2011-12-08</h1><ul>
+<li>Added support for <code>window.onerror</code> [guillermo]</li>
+<li>Fixed: clear timeout on uncaught exceptions. Closes #131 [guillermo]</li>
+<li>Added <code>mocha.css</code> to PHONY list.</li>
+<li>Added <code>mocha.js</code> to PHONY list.</li>
+</ul>
+<h1>0.3.4 / 2011-12-08</h1><ul>
+<li>Added: allow <code>done()</code> to be called with non-Error</li>
+<li>Added: return Runner from <code>mocha.run()</code>. Closes #126</li>
+<li>Fixed: run afterEach even on failures. Closes #125</li>
+<li>Fixed clobbering of current runnable. Closes #121</li>
+</ul>
+<h1>0.3.3 / 2011-12-08</h1><ul>
+<li>Fixed hook timeouts. Closes #120</li>
+<li>Fixed uncaught exceptions in hooks</li>
+</ul>
+<h1>0.3.2 / 2011-12-05</h1><ul>
+<li>Fixed weird reporting when <code>err.message</code> is not present</li>
+</ul>
+<h1>0.3.1 / 2011-12-04</h1><ul>
+<li>Fixed hook event emitter leak. Closes #117</li>
+<li>Fixed: export <code>Spec</code> constructor. Closes #116</li>
+</ul>
+<h1>0.3.0 / 2011-12-04</h1><ul>
+<li>Added <code>-w, --watch</code>. Closes #72</li>
+<li>Added <code>--ignore-leaks</code> to ignore global leak checking</li>
+<li>Added browser <code>?grep=pattern</code> support</li>
+<li>Added <code>--globals &lt;names&gt;</code> to specify accepted globals. Closes #99</li>
+<li>Fixed <code>mocha-debug(1)</code> on some systems. Closes #232</li>
+<li>Fixed growl total, use <code>runner.total</code></li>
+</ul>
+<h1>0.2.0 / 2011-11-30</h1><ul>
+<li>Added <code>--globals &lt;names&gt;</code> to specify accepted globals. Closes #99</li>
+<li>Fixed funky highlighting of messages. Closes #97</li>
+<li>Fixed <code>mocha-debug(1)</code>. Closes #232</li>
+<li>Fixed growl total, use runner.total</li>
+</ul>
+<h1>0.1.0 / 2011-11-29</h1><ul>
+<li>Added <code>suiteSetup</code> and <code>suiteTeardown</code> to TDD interface [David Henderson]</li>
+<li>Added growl icons. Closes #84</li>
+<li>Fixed coffee-script support</li>
+</ul>
+<h1>0.0.8 / 2011-11-25</h1><ul>
+<li>Fixed: use <code>Runner#total</code> for accurate reporting</li>
+</ul>
+<h1>0.0.7 / 2011-11-25</h1><ul>
+<li>Added <code>Hook</code></li>
+<li>Added <code>Runnable</code></li>
+<li>Changed: <code>Test</code> is <code>Runnable</code></li>
+<li>Fixed global leak reporting in hooks</li>
+<li>Fixed: &gt; 2 calls to done() only report the error once</li>
+<li>Fixed: clear timer on failure. Closes #80</li>
+</ul>
+<h1>0.0.6 / 2011-11-25</h1><ul>
+<li>Fixed return on immediate async error. Closes #80</li>
+</ul>
+<h1>0.0.5 / 2011-11-24</h1><ul>
+<li>Fixed: make mocha.opts whitespace less picky [kkaefer]</li>
+</ul>
+<h1>0.0.4 / 2011-11-24</h1><ul>
+<li>Added <code>--interfaces</code></li>
+<li>Added <code>--reporters</code></li>
+<li>Added <code>-c, --colors</code>. Closes #69</li>
+<li>Fixed hook timeouts</li>
+</ul>
+<h1>0.0.3 / 2011-11-23</h1><ul>
+<li>Added <code>-C, --no-colors</code> to explicitly disable</li>
+<li>Added coffee-script support</li>
+</ul>
+<h1>0.0.2 / 2011-11-22</h1><ul>
+<li>Fixed global leak detection due to Safari bind() change</li>
+<li>Fixed: escape html entities in Doc reporter</li>
+<li>Fixed: escape html entities in HTML reporter</li>
+<li>Fixed pending test support for HTML reporter. Closes #66</li>
+</ul>
+<h1>0.0.1 / 2011-11-22</h1><ul>
+<li>Added <code>--timeout</code> second shorthand support, ex <code>--timeout 3s</code>.</li>
+<li>Fixed &quot;test end&quot; event for uncaughtExceptions. Closes #61</li>
+</ul>
+<h1>0.0.1-alpha6 / 2011-11-19</h1><ul>
+<li>Added travis CI support (needs enabling when public)</li>
+<li>Added preliminary browser support</li>
+<li>Added <code>make mocha.css</code> target. Closes #45</li>
+<li>Added stack trace to TAP errors. Closes #52</li>
+<li>Renamed tearDown to teardown. Closes #49</li>
+<li>Fixed: cascading hooksc. Closes #30</li>
+<li>Fixed some colors for non-tty</li>
+<li>Fixed errors thrown in sync test-cases due to nextTick</li>
+<li>Fixed Base.window.width... again give precedence to 0.6.x</li>
+</ul>
+<h1>0.0.1-alpha5 / 2011-11-17</h1><ul>
+<li>Added <code>doc</code> reporter. Closes #33</li>
+<li>Added suite merging. Closes #28</li>
+<li>Added TextMate bundle and <code>make tm</code>. Closes #20</li>
+</ul>
+<h1>0.0.1-alpha4 / 2011-11-15</h1><ul>
+<li>Fixed getWindowSize() for 0.4.x</li>
+</ul>
+<h1>0.0.1-alpha3 / 2011-11-15</h1><ul>
+<li>Added <code>-s, --slow &lt;ms&gt;</code> to specify &quot;slow&quot; test threshold</li>
+<li>Added <code>mocha-debug(1)</code></li>
+<li>Added <code>mocha.opts</code> support. Closes #31</li>
+<li>Added: default [files] to <em>test/*.js</em></li>
+<li>Added protection against multiple calls to <code>done()</code>. Closes #35</li>
+<li>Changed: bright yellow for slow Dot reporter tests</li>
+</ul>
+<h1>0.0.1-alpha1 / 2011-11-08</h1><ul>
+<li>Missed this one :)</li>
+</ul>
+<h1>0.0.1-alpha1 / 2011-11-08</h1><ul>
+<li>Initial release</li>
+</ul>
+  </body>
+</html>

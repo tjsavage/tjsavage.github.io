@@ -1,0 +1,129 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <!---
+
+This README is automatically generated from the comments in these files:
+test-fixture.html
+
+Edit those files, and our readme bot will duplicate them over here!
+Edit this file, and the bot will squash your changes :)
+
+The bot does some handling of markdown. Please file a bug if it does the wrong
+thing! https://github.com/PolymerLabs/tedium/issues
+
+-->
+<p><a href="https://travis-ci.org/PolymerElements/test-fixture"><img src="https://travis-ci.org/PolymerElements/test-fixture.svg?branch=master" alt="Build status"></a></p>
+<p>##&lt;test-fixture&gt;</p>
+<p>The <code>&lt;test-fixture&gt;</code> element can simplify the exercise of consistently
+resetting a test suite&#39;s DOM. To use it, wrap the test suite&#39;s DOM as a template:</p>
+<pre><code class="language-html">&lt;test-fixture id=&quot;SomeElementFixture&quot;&gt;
+  &lt;template&gt;
+    &lt;some-element id=&quot;SomeElementForTesting&quot;&gt;&lt;/some-element&gt;
+  &lt;/template&gt;
+&lt;/test-fixture&gt;
+</code></pre>
+<p>Now, the <code>&lt;test-fixture&gt;</code> element can be used to generate a copy of its
+template:</p>
+<pre><code class="language-html">&lt;script&gt;
+describe(&#39;&lt;some-element&gt;&#39;, function () {
+  var someElement;
+
+  beforeEach(function () {
+    document.getElementById(&#39;SomeElementFixture&#39;).create();
+    someElement = document.getElementById(&#39;SomeElementForTesting&#39;);
+  });
+});
+&lt;/script&gt;
+</code></pre>
+<p>Fixtured elements can be cleaned up by calling <code>restore</code> on the <code>&lt;test-fixture&gt;</code>:</p>
+<pre><code class="language-javascript">  afterEach(function () {
+    document.getElementById(&#39;SomeElementFixture&#39;).restore();
+    // &lt;some-element id=&#39;SomeElementForTesting&#39;&gt; has been removed
+  });
+</code></pre>
+<p><code>&lt;test-fixture&gt;</code> will create fixtures from all of its immediate <code>&lt;template&gt;</code>
+children. The DOM structure of fixture templates can be as simple or as complex
+as the situation calls for.</p>
+<h2>Even simpler usage in Mocha</h2><p>In Mocha, usage can be simplified even further. Include <code>test-fixture-mocha.js</code>
+after Mocha in the <code>&lt;head&gt;</code> of your document and then fixture elements like so:</p>
+<pre><code class="language-html">&lt;script&gt;
+describe(&#39;&lt;some-element&gt;&#39;, function () {
+  var someElement;
+
+  beforeEach(function () {
+    someElement = fixture(&#39;SomeElementFixture&#39;);
+  });
+});
+&lt;/script&gt;
+</code></pre>
+<p>Fixtured elements will be automatically restored in the <code>afterEach</code> phase of the
+current Mocha <code>Suite</code>.</p>
+<h2>Data-bound templates</h2><p>Data-binding systems are also supported, as long as your (custom) template
+elements define a <code>stamp(model)</code> method that returns a document fragment. This
+allows you to stamp out templates w/ custom models for your fixtures.</p>
+<p>For example, using Polymer 0.8&#39;s <code>dom-template</code>:</p>
+<pre><code class="language-html">&lt;test-fixture id=&quot;bound&quot;&gt;
+  &lt;template is=&quot;dom-template&quot;&gt;
+    &lt;span&gt;{{greeting}}&lt;/span&gt;
+  &lt;/template&gt;
+&lt;/test-fixture&gt;
+</code></pre>
+<p>You can pass an optional context argument to <code>create()</code> or <code>fixture()</code> to pass
+the model:</p>
+<pre><code class="language-js">var bound = fixture(&#39;bound&#39;, {greeting: &#39;ohai thurr&#39;});
+</code></pre>
+<h2>The problem being addressed</h2><p>Consider the following <code>web-component-tester</code> test suite:</p>
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;some-element test suite&lt;/title&gt;
+
+  &lt;link rel=&quot;import&quot; href=&quot;../some-element.html&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;some-element id=&quot;SomeElementForTesting&quot;&gt;&lt;/some-element&gt;
+  &lt;script&gt;
+describe(&#39;&lt;some-element&gt;&#39;, function () {
+  var someElement;
+
+  beforeEach(function () {
+    someElement = document.getElementById(&#39;SomeElementForTesting&#39;);
+  });
+
+  it(&#39;can receive property `foo`&#39;, function () {
+    someElement.foo = &#39;bar&#39;;
+    expect(someElement.foo).to.be.equal(&#39;bar&#39;);
+  });
+
+  it(&#39;has a default `foo` value of `undefined`&#39;, function () {
+    expect(someElement.foo).to.be.equal(undefined);
+  });
+});
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>In this contrived example, the suite will pass or fail depending on which order
+the tests are run in. It is non-deterministic because <code>someElement</code> has
+internal state that is not properly reset at the end of each test.</p>
+<p>It would be trivial in the above example to simply reset <code>someElement.foo</code> to
+the expected default value of <code>undefined</code> in an <code>afterEach</code> hook. However, for
+non-contrived test suites that target complex elements, this can result in a
+large quantity of ever-growing set-up and tear-down boilerplate.</p>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <p>##&lt;app-drawer-layout&gt;</p>
+<p>app-drawer-layout is a wrapper element that positions an app-drawer and other content. When
+the viewport width is smaller than <code>responsiveWidth</code>, this element changes to narrow layout.
+In narrow layout, the drawer will be stacked on top of the main content. The drawer will slide
+in/out to hide/reveal the main content.</p>
+<p>By default the drawer is aligned to the start, which is left in LTR layouts:</p>
+<pre><code class="language-html">&lt;app-drawer-layout&gt;
+  &lt;app-drawer&gt;
+    drawer content
+  &lt;/app-drawer&gt;
+  &lt;div&gt;
+    main content
+  &lt;/div&gt;
+&lt;/app-drawer-layout&gt;
+</code></pre>
+<p>Align the drawer at the end:</p>
+<pre><code class="language-html">&lt;app-drawer-layout&gt;
+  &lt;app-drawer align=&quot;end&quot;&gt;
+     drawer content
+  &lt;/app-drawer&gt;
+  &lt;div&gt;
+    main content
+  &lt;/div&gt;
+&lt;/app-drawer-layout&gt;
+</code></pre>
+<p>With an app-header-layout:</p>
+<pre><code class="language-html">&lt;app-drawer-layout&gt;
+  &lt;app-drawer&gt;
+    drawer-content
+  &lt;/app-drawer&gt;
+  &lt;app-header-layout&gt;
+    &lt;app-header&gt;
+      &lt;app-toolbar&gt;
+        &lt;div main-title&gt;App name&lt;/div&gt;
+      &lt;/app-toolbar&gt;
+    &lt;/app-header&gt;
+
+    main content
+
+  &lt;/app-header-layout&gt;
+&lt;/app-drawer-layout&gt;
+</code></pre>
+<p>Add the <code>drawer-toggle</code> attribute to elements inside <code>app-drawer-layout</code> that toggle the drawer on tap events:</p>
+<pre><code class="language-html">&lt;app-drawer-layout&gt;
+  &lt;app-drawer&gt;
+    drawer-content
+  &lt;/app-drawer&gt;
+  &lt;app-header-layout&gt;
+    &lt;app-header&gt;
+      &lt;app-toolbar&gt;
+        &lt;paper-icon-button icon=&quot;menu&quot; drawer-toggle&gt;&lt;/paper-icon-button&gt;
+        &lt;div main-title&gt;App name&lt;/div&gt;
+      &lt;/app-toolbar&gt;
+    &lt;/app-header&gt;
+
+    main content
+
+  &lt;/app-header-layout&gt;
+&lt;/app-drawer-layout&gt;
+</code></pre>
+<p>Add the <code>fullbleed</code> attribute to app-drawer-layout to make it fit the size of its container:</p>
+<pre><code class="language-html">&lt;app-drawer-layout fullbleed&gt;
+  &lt;app-drawer&gt;
+     drawer content
+  &lt;/app-drawer&gt;
+  &lt;div&gt;
+    main content
+  &lt;/div&gt;
+&lt;/app-drawer-layout&gt;
+</code></pre>
+<h3>Styling</h3><table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--app-drawer-layout-content-transition</code></td>
+<td>Transition for the content container</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <!---
+
+This README is automatically generated from the comments in these files:
+iron-localstorage.html
+
+Edit those files, and our readme bot will duplicate them over here!
+Edit this file, and the bot will squash your changes :)
+
+The bot does some handling of markdown. Please file a bug if it does the wrong
+thing! https://github.com/PolymerLabs/tedium/issues
+
+-->
+<p><a href="https://travis-ci.org/PolymerElements/iron-localstorage"><img src="https://travis-ci.org/PolymerElements/iron-localstorage.svg?branch=master" alt="Build status"></a></p>
+<p><em><a href="https://elements.polymer-project.org/elements/iron-localstorage">Demo and API docs</a></em></p>
+<p>##&lt;iron-localstorage&gt;</p>
+<p>Element access to Web Storage API (window.localStorage).</p>
+<p>Keeps <code>value</code> property in sync with localStorage.</p>
+<p>Value is saved as json by default.</p>
+<h3>Usage:</h3><p><code>ls-sample</code> will automatically save changes to its value.</p>
+<pre><code class="language-html">&lt;dom-module id=&quot;ls-sample&quot;&gt;
+  &lt;iron-localstorage name=&quot;my-app-storage&quot;
+    value=&quot;{{cartoon}}&quot;
+    on-iron-localstorage-load-empty=&quot;initializeDefaultCartoon&quot;
+  &gt;&lt;/iron-localstorage&gt;
+&lt;/dom-module&gt;
+
+&lt;script&gt;
+  Polymer({
+    is: &#39;ls-sample&#39;,
+    properties: {
+      cartoon: {
+        type: Object
+      }
+    },
+    // initializes default if nothing has been stored
+    initializeDefaultCartoon: function() {
+      this.cartoon = {
+        name: &quot;Mickey&quot;,
+        hasEars: true
+      }
+    },
+    // use path set api to propagate changes to localstorage
+    makeModifications: function() {
+      this.set(&#39;cartoon.name&#39;, &quot;Minions&quot;);
+      this.set(&#39;cartoon.hasEars&#39;, false);
+    }
+  });
+&lt;/script&gt;
+</code></pre>
+<h3>Tech notes:</h3><ul>
+<li><code>value.*</code> is observed, and saved on modifications. You must use
+path change notification methods such as <code>set()</code> to modify value
+for changes to be observed.</li>
+</ul>
+<ul>
+<li>Set <code>auto-save-disabled</code> to prevent automatic saving.</li>
+</ul>
+<ul>
+<li>Value is saved as JSON by default.</li>
+</ul>
+<ul>
+<li>To delete a key, set value to null</li>
+</ul>
+<p>Element listens to StorageAPI <code>storage</code> event, and will reload upon receiving it.</p>
+<p><strong>Warning</strong>: do not bind value to sub-properties until Polymer
+<a href="https://github.com/Polymer/polymer/issues/1550">bug 1550</a>
+is resolved. Local storage will be blown away.
+<code>&lt;iron-localstorage value=&quot;{{foo.bar}}&quot;</code> will cause <strong>data loss</strong>.</p>
+  </body>
+</html>

@@ -1,0 +1,172 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <p><a href="https://travis-ci.org/GoogleChrome/accessibility-developer-tools"><img src="https://travis-ci.org/GoogleChrome/accessibility-developer-tools.svg?branch=master" alt="Build Status"></a>
+<a href="https://www.npmjs.com/package/accessibility-developer-tools"><img src="https://img.shields.io/npm/v/accessibility-developer-tools.svg" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/accessibility-developer-tools"><img src="https://img.shields.io/npm/dm/accessibility-developer-tools.svg" alt="npm downloads"></a></p>
+<h1>Accessibility Developer Tools</h1><p>This is a library of accessibility-related testing and utility code.</p>
+<p>Its main component is the accessibility audit: a collection of audit rules checking for common accessibility problems, and an API for running these rules in an HTML page.</p>
+<p>There is also a collection of accessibility-related utility code, including but not limited to:</p>
+<ul>
+<li>contrast ratio calculation and color suggestions</li>
+<li>retrieving and validating ARIA attributes and states</li>
+<li>accessible name calculation using the algorithm at <a href="http://www.w3.org/TR/wai-aria/roles#textalternativecomputation">http://www.w3.org/TR/wai-aria/roles#textalternativecomputation</a></li>
+</ul>
+<h1>Getting the code</h1><p>To include just the javascript rules, require the following file:</p>
+<pre><code>https://raw.github.com/GoogleChrome/accessibility-developer-tools/stable/dist/js/axs_testing.js
+</code></pre><p>  <code>git 1.6.5</code> or later:</p>
+<pre><code>% git clone --recursive https://github.com/GoogleChrome/accessibility-developer-tools.git
+</code></pre><p>  Before <code>git 1.6.5</code>:</p>
+<pre><code>% git clone https://github.com/GoogleChrome/accessibility-developer-tools.git
+% cd accessibility-developer-tools
+% git submodule init; git submodule update
+</code></pre><h1>Building</h1><p>You will need <code>node</code> and <code>grunt-cli</code> to build.</p>
+<ol>
+<li><p>(Once only) Install <a href="http://nodejs.org/">Node.js</a> and <code>npm</code> - useful instructions here: <a href="https://gist.github.com/isaacs/579814">https://gist.github.com/isaacs/579814</a></p>
+<p> Make sure you have Node.js v 0.8 or higher.</p>
+</li>
+<li><p>(Once only) Use <code>npm</code> to install <code>grunt-cli</code></p>
+<pre><code> % npm install -g grunt-cli  # May need to be run as root
+</code></pre></li>
+<li><p>(Every time you make a fresh checkout) Install dependencies (including <code>grunt</code>) for this project (run from project root)</p>
+<pre><code> % npm install
+</code></pre></li>
+<li><p>(Rebuild if you make changes) Build using <code>grunt</code> (run from project root)</p>
+<pre><code> % grunt
+</code></pre></li>
+</ol>
+<h2>Troubleshooting</h2><p>This project uses <a href="https://github.com/google/closure-compiler">Closure Compiler</a> to build our releases. You may need to install a recent version of <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a> in order for builds to successfully complete.</p>
+<h1>Using the Audit API</h1><h2>Including the library</h2><p>The simplest option is to include the generated <code>axs_testing.js</code> library on your page. After you build, you will have two versions of <code>axs_testings.js</code>:</p>
+<ul>
+<li>Distribution Build: project-root/dist/js/axs_testing.js</li>
+<li>Local Build (use if you make changes): project-root/tmp/build/axs_testing.js</li>
+</ul>
+<p>Work is underway to include the library in WebDriver and other automated testing frameworks.</p>
+<h2>The <code>axs.Audit.run()</code> method</h2><p>Once you have included <code>axs_testing.js</code>, you can call <code>axs.Audit.run()</code>. This returns an object in the following form:</p>
+<pre><code>{
+  /** @type {axs.constants.AuditResult} */
+  result,  // one of PASS, FAIL or NA
+
+  /** @type {Array.&lt;Element&gt;} */
+  elements,  // The elements which the rule fails on, if result == axs.constants.AuditResult.FAIL
+
+  /** @type {axs.AuditRule} */
+  rule  // The rule which this result is for.
+}
+</code></pre><h3>Command Line Runner</h3><p>The Accessibility Developer Tools project includes a command line runner for the audit. To use the runner, <a href="http://phantomjs.org/download.html">install phantomjs</a> then run the following command from the project root directory.</p>
+<pre><code>$ phantomjs tools/runner/audit.js &lt;url-or-filepath&gt;
+</code></pre><p>The runner will load the specified file or URL in a headless browser, inject axs_testing.js, run the audit and output the report text.</p>
+<h3>Run audit from Selenium WebDriver (Scala):</h3><pre><code> val driver = org.openqa.selenium.firefox.FirefoxDriver //use driver of your choice
+ val jse = driver.asInstanceOf[JavascriptExecutor]
+ jse.executeScript(scala.io.Source.fromURL(&quot;https://raw.githubusercontent.com/GoogleChrome/&quot; +
+   &quot;accessibility-developer-tools/stable/dist/js/axs_testing.js&quot;).mkString)
+ val report = jse.executeScript(&quot;var results = axs.Audit.run();return axs.Audit.createReport(results);&quot;)
+ println(report)
+</code></pre><h3>Run audit from Selenium WebDriver (Scala)(with caching):</h3><pre><code> val cache = collection.mutable.Map[String, String]()
+ val driver = org.openqa.selenium.firefox.FirefoxDriver //use driver of your choice
+ val jse = driver.asInstanceOf[JavascriptExecutor]
+ def getUrlSource(arg: String): String = cache get arg match {
+    case Some(result) =&gt; result
+    case None =&gt;
+      val result: String = scala.io.Source.fromURL(arg).mkString
+      cache(arg) = result
+      result
+  }
+ jse.executeScript(getUrlSource(&quot;https://raw.githubusercontent.com/GoogleChrome/&quot; +
+   &quot;accessibility-developer-tools/stable/dist/js/axs_testing.js&quot;))
+ val report = js.executeScript(&quot;var results = axs.Audit.run();return axs.Audit.createReport(results);&quot;)
+ println(report)
+</code></pre><p>If println() outputs nothing, check if you need to set DesiredCapabilities for your WebDriver (such as loggingPrefs):
+<a href="https://code.google.com/p/selenium/wiki/DesiredCapabilities">https://code.google.com/p/selenium/wiki/DesiredCapabilities</a></p>
+<h2>Using the results</h2><h3>Interpreting the result</h3><p>The result may be one of three constants:</p>
+<ul>
+<li><code>axs.constants.AuditResult.PASS</code> - This implies that there were elements on the page that may potentially have failed this audit rule, but they passed. Congratulations!</li>
+<li><code>axs.constants.AuditResult.NA</code> - This implies that there were no elements on the page that may potentially have failed this audit rule. For example, an audit rule that checks video elements for subtitles would return this result if there were no video elements on the page.</li>
+<li><code>axs.constants.AuditResult.FAIL</code> - This implies that there were elements on the page that did not pass this audit rule. This is the only result you will probably be interested in.</li>
+</ul>
+<h3>Creating a useful error message</h3><p>The static, global <code>axs.Audit.createReport(results, opt_url)</code> may be used to create an error message using the return value of axs.Audit.run(). This will look like the following:</p>
+<pre><code>*** Begin accessibility audit results ***
+An accessibility audit found 4 errors and 4 warnings on this page.
+For more information, please see https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules
+
+Error: badAriaAttributeValue (AX_ARIA_04) failed on the following elements (1 - 3 of 3):
+DIV:nth-of-type(3) &gt; INPUT
+DIV:nth-of-type(5) &gt; INPUT
+#aria-invalid
+
+Error: badAriaRole (AX_ARIA_01) failed on the following element:
+DIV:nth-of-type(11) &gt; SPAN
+
+Error: controlsWithoutLabel (AX_TEXT_01) failed on the following elements (1 - 3 of 3):
+DIV &gt; INPUT
+DIV:nth-of-type(12) &gt; DIV:nth-of-type(3) &gt; INPUT
+LABEL &gt; INPUT
+
+Error: requiredAriaAttributeMissing (AX_ARIA_03) failed on the following element:
+DIV:nth-of-type(13) &gt; DIV:nth-of-type(11) &gt; DIV
+
+Warning: focusableElementNotVisibleAndNotAriaHidden (AX_FOCUS_01) failed on the following element:
+#notariahidden
+
+Warning: imagesWithoutAltText (AX_TEXT_02) failed on the following elements (1 - 2 of 2):
+#deceptive-img
+DIV:nth-of-type(13) &gt; IMG
+
+Warning: lowContrastElements (AX_COLOR_01) failed on the following elements (1 - 2 of 2):
+DIV:nth-of-type(13) &gt; DIV
+DIV:nth-of-type(13) &gt; DIV:nth-of-type(3)
+
+Warning: nonExistentAriaLabelledbyElement (AX_ARIA_02) failed on the following elements (1 - 2 of 2):
+DIV:nth-of-type(3) &gt; INPUT
+DIV:nth-of-type(5) &gt; INPUT
+*** End accessibility audit results ***
+</code></pre><p>Each rule will have at most five elements listed as failures, in the form of a unique query selector for each element.</p>
+<h3>Configuring the Audit</h3><p>If you wish to fine-tune the audit, you can create an <code>axs.AuditConfiguration</code> object, with the following options:</p>
+<h4>Ignore parts of the page for a particular audit rule</h4><p>For example, say you have a separate high-contrast version of your page, and there is a CSS rule which causes certain elements (with class <code>pretty</code>) on the page to be low-contrast for stylistic reasons. Running the audit unmodified produces results something like</p>
+<pre><code>Warning: lowContrastElements (AX_COLOR_01) failed on the following elements (1 - 5 of 15):
+...
+</code></pre><p>You can modify the audit to ignore the elements which are known and intended to have low contrast like this:</p>
+<pre><code>var configuration = new axs.AuditConfiguration();
+configuration.ignoreSelectors(&#39;lowContrastElements&#39;, &#39;.pretty&#39;);
+axs.Audit.run(configuration);
+</code></pre><p>The <code>AuditConfiguration.ignoreSelectors()</code> method takes a rule name, which you can find in the audit report, and a query selector string representing the parts of the page to be ignored for that audit rule. Multiple calls to <code>ignoreSelectors()</code> can be made for each audit rule, if multiple selectors need to be ignored.</p>
+<h4>Restrict the scope of the entire audit to a subsection of the page</h4><p>You may have a part of the page which varies while other parts of the page stay constant, like a content area vs. a toolbar. In this case, running the audit on the entire page may give you spurious results in the part of the page which doesn&#39;t vary, which may drown out regressions in the main part of the page.</p>
+<p>You can set a <code>scope</code> on the <code>AuditConfiguration</code> object like this:</p>
+<pre><code>var configuration = new axs.AuditConfiguration();
+configuration.scope = document.querySelector(&#39;main&#39;);  // or however you wish to choose your scope element
+axs.Audit.run(configuration);
+</code></pre><p>You may also specify a configuration payload while instantiating the <code>axs.AuditConfiguration</code>,
+which allows you to provide multiple configuration options at once.</p>
+<pre><code>var configuration = new axs.AuditConfiguration({
+  auditRulesToRun: [&#39;badAriaRole&#39;],
+  scope: document.querySelector(&#39;main&#39;),
+  maxResults: 5
+});
+
+axs.Audit.run(configuration);
+</code></pre><h2>License</h2><p>Copyright 2013 Google Inc. All Rights Reserved.</p>
+<p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+  </body>
+</html>

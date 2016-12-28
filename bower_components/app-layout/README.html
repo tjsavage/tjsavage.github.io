@@ -1,0 +1,112 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <h1>App Layout <a href="https://travis-ci.org/PolymerElements/app-layout"><img src="https://travis-ci.org/PolymerElements/app-layout.svg?branch=master" alt="Build Status"></a> <a href="https://beta.webcomponents.org/element/PolymerElements/app-layout"><img src="https://img.shields.io/badge/webcomponents.org-published-blue.svg" alt="Published on webcomponents.org"></a></h1><p><a href="https://polymerelements.github.io/app-layout/"><img src="https://app-layout-assets.appspot.com/assets/docs/app-layout.png" width="300" height="210"></a></p>
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="app-drawer/app-drawer.html">
+    <link rel="import" href="app-header/app-header.html">
+    <link rel="import" href="app-toolbar/app-toolbar.html">
+    <link rel="import" href="demo/sample-content.html">
+    <link rel="import" href="../iron-icons/iron-icons.html">
+    <link rel="import" href="../paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="../paper-progress/paper-progress.html">
+    <style is="custom-style">
+      body {
+        margin: 0;
+        font-family: 'Roboto', 'Noto', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        background: #f1f1f1;
+      }
+      app-toolbar {
+        background-color: #4285f4;
+        color: #fff;
+      }
+      paper-icon-button + [main-title] {
+        margin-left: 24px;
+      }
+      paper-progress {
+        display: block;
+        width: 100%;
+        --paper-progress-active-color: rgba(255, 255, 255, 0.5);
+        --paper-progress-container-color: transparent;
+      }
+      app-header {
+        @apply(--layout-fixed-top);
+        color: #fff;
+        --app-header-background-rear-layer: {
+          background-color: #ef6c00;
+        };
+      }
+      app-drawer {
+        --app-drawer-scrim-background: rgba(0, 0, 100, 0.8);
+        --app-drawer-content-container: {
+          background-color: #B0BEC5;
+        }
+      }
+      sample-content {
+        padding-top: 64px;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+<pre><code class="language-html">&lt;app-header reveals&gt;
+  &lt;app-toolbar&gt;
+    &lt;paper-icon-button icon=&quot;menu&quot; onclick=&quot;drawer.toggle()&quot;&gt;&lt;/paper-icon-button&gt;
+    &lt;div main-title&gt;My app&lt;/div&gt;
+    &lt;paper-icon-button icon=&quot;delete&quot;&gt;&lt;/paper-icon-button&gt;
+    &lt;paper-icon-button icon=&quot;search&quot;&gt;&lt;/paper-icon-button&gt;
+    &lt;paper-icon-button icon=&quot;close&quot;&gt;&lt;/paper-icon-button&gt;
+    &lt;paper-progress value=&quot;10&quot; indeterminate bottom-item&gt;&lt;/paper-progress&gt;
+  &lt;/app-toolbar&gt;
+&lt;/app-header&gt;
+&lt;app-drawer id=&quot;drawer&quot; swipe-open&gt;&lt;/app-drawer&gt;
+&lt;sample-content size=&quot;10&quot;&gt;&lt;/sample-content&gt;
+</code></pre>
+<p><a href="https://polymerelements.github.io/app-layout/">https://polymerelements.github.io/app-layout/</a></p>
+<p>For additional documentation, please check out <a href="https://www.polymer-project.org/1.0/toolbox/app-layout">Responsive app layout</a>.</p>
+<p>A set of layout elements for your app. It includes:</p>
+<ul>
+<li><p><a href="/app-box">app-box</a> - A container element that can have scroll effects - visual effects based on scroll position.</p>
+</li>
+<li><p><a href="/app-drawer">app-drawer</a> - A navigation drawer that can slide in from the left or right.</p>
+</li>
+<li><p><a href="/app-drawer-layout">app-drawer-layout</a> - A wrapper element that positions an app-drawer and other content.</p>
+</li>
+<li><p><a href="/app-grid">app-grid</a> - A helper class useful for creating responsive, fluid grid layouts using custom properties.</p>
+</li>
+<li><p><a href="/app-header">app-header</a> - A container element for app-toolbars at the top of the screen that can have scroll effects - visual effects based on scroll position.</p>
+</li>
+<li><p><a href="/app-header-layout">app-header-layout</a> - A wrapper element that positions an app-header and other content.</p>
+</li>
+<li><p><a href="/app-scrollpos-control">app-scrollpos-control</a> - A manager for saving and restoring the scroll position when multiple pages are sharing the same document scroller.</p>
+</li>
+<li><p><a href="/app-toolbar">app-toolbar</a> - A horizontal toolbar containing items that can be used for label, navigation, search and actions.</p>
+</li>
+</ul>
+<h3>Install</h3><pre><code class="language-bash">$ bower install PolymerElements/app-layout --save
+</code></pre>
+<h3>Import</h3><pre><code class="language-html">&lt;link rel=&quot;import&quot; href=&quot;/bower_components/app-layout/app-layout.html&quot;&gt;
+</code></pre>
+  </body>
+</html>

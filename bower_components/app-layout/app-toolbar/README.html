@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <p>##&lt;app-toolbar&gt;</p>
+<p>app-toolbar is a horizontal toolbar containing items that can be used for
+label, navigation, search and actions.</p>
+<h3>Example</h3><p>Add a title to the toolbar.</p>
+<pre><code class="language-html">&lt;app-toolbar&gt;
+  &lt;div main-title&gt;App name&lt;/div&gt;
+&lt;/app-toolbar&gt;
+</code></pre>
+<p>Add a button to the left and right side of the toolbar.</p>
+<pre><code class="language-html">&lt;app-toolbar&gt;
+  &lt;paper-icon-button icon=&quot;menu&quot;&gt;&lt;/paper-icon-button&gt;
+  &lt;div main-title&gt;App name&lt;/div&gt;
+  &lt;paper-icon-button icon=&quot;search&quot;&gt;&lt;/paper-icon-button&gt;
+&lt;/app-toolbar&gt;
+</code></pre>
+<p>You can use the attributes <code>top-item</code> or <code>bottom-item</code> to completely fit an element
+to the top or bottom of the toolbar respectively.</p>
+<h3>Content attributes</h3><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>main-title</code></td>
+<td>The main title element.</td>
+</tr>
+<tr>
+<td><code>condensed-title</code></td>
+<td>The title element if used inside a condensed app-header.</td>
+</tr>
+<tr>
+<td><code>spacer</code></td>
+<td>Adds a left margin of <code>64px</code>.</td>
+</tr>
+<tr>
+<td><code>bottom-item</code></td>
+<td>Sticks the element to the bottom of the toolbar.</td>
+</tr>
+<tr>
+<td><code>top-item</code></td>
+<td>Sticks the element to the top of the toolbar.</td>
+</tr>
+</tbody>
+</table>
+<h3>Styling</h3><table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--app-toolbar-font-size</code></td>
+<td>Toolbar font size</td>
+<td>20px</td>
+</tr>
+</tbody>
+</table>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <!---
+
+This README is automatically generated from the comments in these files:
+iron-location.html  iron-query-params.html
+
+Edit those files, and our readme bot will duplicate them over here!
+Edit this file, and the bot will squash your changes :)
+
+The bot does some handling of markdown. Please file a bug if it does the wrong
+thing! https://github.com/PolymerLabs/tedium/issues
+
+-->
+<p><a href="https://travis-ci.org/PolymerElements/iron-location"><img src="https://travis-ci.org/PolymerElements/iron-location.svg?branch=master" alt="Build status"></a></p>
+<p><em><a href="https://elements.polymer-project.org/elements/iron-location">Demo and API docs</a></em></p>
+<p>##&lt;iron-location&gt;</p>
+<p>The <code>iron-location</code> element manages binding to and from the current URL.</p>
+<p>iron-location is the first, and lowest level element in the Polymer team&#39;s
+routing system. This is a beta release of iron-location as we continue work
+on higher level elements, and as such iron-location may undergo breaking
+changes.</p>
+<h4>Properties</h4><p>When the URL is: <code>/search?query=583#details</code> iron-location&#39;s properties will be:</p>
+<ul>
+<li>path: <code>&#39;/search&#39;</code></li>
+<li>query: <code>&#39;query=583&#39;</code></li>
+<li>hash: <code>&#39;details&#39;</code></li>
+</ul>
+<p>These bindings are bidirectional. Modifying them will in turn modify the URL.</p>
+<p>iron-location is only active while it is attached to the document.</p>
+<h4>Links</h4><p>While iron-location is active in the document it will intercept clicks on links
+within your site, updating the URL pushing the updated URL out through the
+databinding system. iron-location only intercepts clicks with the intent to
+open in the same window, so middle mouse clicks and ctrl/cmd clicks work fine.</p>
+<p>You can customize this behavior with the <code>urlSpaceRegex</code>.</p>
+<h4>Dwell Time</h4><p>iron-location protects against accidental history spamming by only adding
+entries to the user&#39;s history if the URL stays unchanged for <code>dwellTime</code>
+milliseconds.</p>
+<!-- No docs for <iron-query-params> found. -->
+  </body>
+</html>

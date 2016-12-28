@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <h1>Scroll effects</h1><p><code>Polymer.AppScrollEffectsBehavior</code> provides an interface that allows an element to use scrolls effects.</p>
+<h3>Importing the app-layout effects</h3><p>app-layout provides a set of scroll effects that can be used by explicitly importing <code>app-scroll-effects.html</code>:</p>
+<pre><code class="language-html">&lt;link rel=&quot;import&quot; href=&quot;/bower_components/app-layout/app-scroll-effects/app-scroll-effects.html&quot;&gt;
+</code></pre>
+<p>The scroll effects can also be used by individually importing <code>app-layout/app-scroll-effects/effects/[effectName].html</code>.
+For example:</p>
+<pre><code class="language-html">&lt;link rel=&quot;import&quot; href=&quot;/bower_components/app-layout/app-scroll-effects/effects/waterfall.html&quot;&gt;
+</code></pre>
+<h3>Consuming effects</h3><p>Effects can be consumed via the <code>effects</code> property. For example:</p>
+<pre><code class="language-html">&lt;app-header effects=&quot;waterfall&quot;&gt;&lt;/app-header&gt;
+</code></pre>
+<h3>Creating scroll effects</h3><p>You may want to create a custom scroll effect if you need to modify the CSS of an element
+based on the scroll position.</p>
+<p>A scroll effect definition is an object with <code>setUp()</code>, <code>tearDown()</code> and <code>run()</code> functions.</p>
+<p>To register the effect, you can use <code>Polymer.AppLayout.registerEffect(effectName, effectDef)</code>
+For example, let&#39;s define an effect that resizes the header&#39;s logo:</p>
+<pre><code class="language-js">Polymer.AppLayout.registerEffect(&#39;resizable-logo&#39;, {
+  setUp: function(config) {
+    // the effect&#39;s config is passed to the setUp.
+    this._fxResizeLogo = { logo: Polymer.dom(this).querySelector(&#39;[logo]&#39;) };
+  },
+
+  run: function(progress) {
+     // the progress of the effect
+     this.transform(&#39;scale3d(&#39; + progress + &#39;, &#39;+ progress +&#39;, 1)&#39;,  this._fxResizeLogo.logo);
+  },
+
+  tearDown: function() {
+     // clean up and reset of states
+     delete this._fxResizeLogo;
+  }
+});
+</code></pre>
+<p>Now, you can consume the effect:</p>
+<pre><code class="language-html">&lt;app-header id=&quot;appHeader&quot; effects=&quot;resizable-logo&quot;&gt;
+  &lt;img logo src=&quot;logo.svg&quot;&gt;
+&lt;/app-header&gt;
+</code></pre>
+<h3>Imperative API</h3><pre><code class="language-js">var logoEffect = appHeader.createEffect(&#39;resizable-logo&#39;, effectConfig);
+// run the effect: logoEffect.run(progress);
+// tear down the effect: logoEffect.tearDown();
+</code></pre>
+<h3>Configuring effects</h3><p>For effects installed via the <code>effects</code> property, their configuration can be set
+via the <code>effectsConfig</code> property. For example:</p>
+<pre><code class="language-html">&lt;app-header effects=&quot;waterfall&quot;
+  effects-config=&#39;{&quot;waterfall&quot;: {&quot;startsAt&quot;: 0, &quot;endsAt&quot;: 0.5}}&#39;&gt;
+&lt;/app-header&gt;
+</code></pre>
+<p>All effects have a <code>startsAt</code> and <code>endsAt</code> config property. They specify at what
+point the effect should start and end. This value goes from 0 to 1 inclusive.</p>
+  </body>
+</html>

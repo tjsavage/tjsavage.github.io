@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/skeleton.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://twitter.com/taylorthesavage">Twitter</a>
+      <a href="https://www.linkedin.com/in/tjsavage">LinkedIn</a>
+      <a href="talks">Talks</a>
+    </div>
+    <p>##&lt;app-drawer&gt;</p>
+<p>![app-drawer]
+(<a href="http://app-layout-assets.appspot.com/assets/docs/app-drawer/drawer.gif">http://app-layout-assets.appspot.com/assets/docs/app-drawer/drawer.gif</a>)</p>
+<p>app-drawer is a navigation drawer that can slide in from the left or right.</p>
+<p>Example:</p>
+<p>Align the drawer at the start, which is left in LTR layouts (default):</p>
+<pre><code class="language-html">&lt;app-drawer opened&gt;&lt;/app-drawer&gt;
+</code></pre>
+<p>Align the drawer at the end:</p>
+<pre><code class="language-html">&lt;app-drawer align=&quot;end&quot; opened&gt;&lt;/app-drawer&gt;
+</code></pre>
+<p>To make the contents of the drawer scrollable, create a wrapper for the scroll
+content, and apply height and overflow styles to it.</p>
+<pre><code class="language-html">&lt;app-drawer&gt;
+  &lt;div style=&quot;height: 100%; overflow: auto;&quot;&gt;&lt;/div&gt;
+&lt;/app-drawer&gt;
+</code></pre>
+<h3>Styling</h3><table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--app-drawer-width</code></td>
+<td>Width of the drawer</td>
+<td>256px</td>
+</tr>
+<tr>
+<td><code>--app-drawer-content-container</code></td>
+<td>Mixin for the drawer content container</td>
+<td>{}</td>
+</tr>
+<tr>
+<td><code>--app-drawer-scrim-background</code></td>
+<td>Background for the scrim</td>
+<td>rgba(0, 0, 0, 0.5)</td>
+</tr>
+</tbody>
+</table>
+  </body>
+</html>
